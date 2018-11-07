@@ -13,3 +13,4 @@ pages:
     - 'Validator Error Messages' : 'error-messages.md'
 
 theme: readthedocs
+extra_css: ["https://jason-fox.github.io/com.here.validate.svrl/dita.css"]
