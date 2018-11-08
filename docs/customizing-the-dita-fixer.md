@@ -1,3 +1,5 @@
+<h1>DITA Fixer Customization</h1>
+
 Adding a new fixable rule
 -------------------------
 

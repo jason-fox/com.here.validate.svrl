@@ -1,3 +1,5 @@
+<h1>Validator Error Messages</h1>
+
 The following tables list the validator error messages by type and message ID. Base DITA validator rules are in normal text. Rules in **bold** are examples of custom rules which can be detected if the `overrides` transform from the [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) is used.
 
 Content Validation

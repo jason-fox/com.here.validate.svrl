@@ -1,3 +1,5 @@
+<h1>Usage</h1>
+
 Validating a document from the Command line
 -------------------------------------------
 
