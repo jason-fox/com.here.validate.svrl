@@ -1,6 +1,3 @@
-Usage
-=====
-
 Validating a document from the Command line
 -------------------------------------------
 
@@ -27,9 +24,9 @@ Once the command has run, an SVRL file is created
 	<fired-rule context="common" role="content"/>
 	<failed-assert role="warning" location="/topic/body[1]/section[2]/p[1]">
 		<diagnostic-reference diagnostic="running-text-fixme">
-			Line 20: p - [running-text-fixme] 
-			Found 'FIXME' comments in the following text in this &lt;p&gt; element - 
-			fix as requested and delete the comment. 
+			Line 20: p - [running-text-fixme]
+			Found 'FIXME' comments in the following text in this &lt;p&gt; element -
+			fix as requested and delete the comment.
 
 			FIXME This needs to be fixed
 		</diagnostic-reference>
@@ -83,7 +80,7 @@ Optionally, the output can be highlighed using ANSI color codes by adding the `a
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=true
 ```
 
-### Fix common errors automatically 
+### Fix common errors automatically
 
 To run the  auto-fix command from the command line use the `svrl` transform with the `--args.validate.mode=fix-dita` parameter.
 
@@ -142,6 +139,6 @@ An ANT build file is supplied in the same directory as the sample document. The 
 	<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
 		<arg value="/C"/>
 		<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl-echo -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
-	</exec>	
+	</exec>
 </target>
 ```

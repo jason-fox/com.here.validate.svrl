@@ -1,7 +1,3 @@
-
-Validator Error Messages
-========================
-
 The following tables list the validator error messages by type and message ID. Base DITA validator rules are in normal text. Rules in **bold** are examples of custom rules which can be detected if the `overrides` transform from the [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) is used.
 
 Content Validation
@@ -76,28 +72,28 @@ Structure Validation
 Deprecated Elements
 -------------------
 
-According to the [DITA 2.0 proposal to remove deprecated markup](https://lists.oasis-open.org/archives/dita/201803/msg00024.html) certain elements, attributes and values will cease to be supported under 
+According to the [DITA 2.0 proposal to remove deprecated markup](https://lists.oasis-open.org/archives/dita/201803/msg00024.html) certain elements, attributes and values will cease to be supported under
 DITA 2.0. These structure rules are all currently set to **WARNING** level and are auto-fixable.
 
 |Fix|Message ID|Message|Corrective Action/Comment|
 |---|----------|-------|-------------------------|
-| **YES** |boolean-deprecated|The `<boolean>` element will no longer be supported in DITA 2.0. | Replace the `<boolean>` element with a `<state>` element.| 
-| **YES** |chunk-to-navigation-deprecated|`chunk="to-navigation"` is not supported in DITA 2.0.|Delete the attribute| 
-| **YES** |image-alt-deprecated|`<image>` elements will no longer support the `alt` attribute in DITA 2.0.|Replace the `alt` attribute with an `<alt>` sub-element.| 
-| **YES** |image-longdescref-deprecated|`<image>` elements will no longer support the `longdescref` attribute in DITA 2.0. | Replace the `longdescref` attribute with an `<longdescref>` sub-element.| 
+| **YES** |boolean-deprecated|The `<boolean>` element will no longer be supported in DITA 2.0. | Replace the `<boolean>` element with a `<state>` element.|
+| **YES** |chunk-to-navigation-deprecated|`chunk="to-navigation"` is not supported in DITA 2.0.|Delete the attribute|
+| **YES** |image-alt-deprecated|`<image>` elements will no longer support the `alt` attribute in DITA 2.0.|Replace the `alt` attribute with an `<alt>` sub-element.|
+| **YES** |image-longdescref-deprecated|`<image>` elements will no longer support the `longdescref` attribute in DITA 2.0. | Replace the `longdescref` attribute with an `<longdescref>` sub-element.|
 | **YES** |indextermref-deprecated|The `<boolean>` element will no longer be supported in DITA 2.0.|Delete the element|
-| **YES** |linklist-collection-type-tree-deprecated|The `<linklist>` element will no longer support `collection-type="tree"` in DITA 2.0.|Replace the value| 
-| **YES** |linkpool-collection-type-tree-deprecated|The `<linkpool>` element will no longer support `collection-type="tree"` in DITA 2.0.|Replace the value| 
-| **YES** |lq-type-deprecated|The `<lq>` element will no longer support the `type` attribute in DITA 2.0.|Delete the attribute| 
-| **YES** |map-title-deprecated|The `<map>` element will no longer support the `title` attribute in DITA 2.0.|Replace the `title` attribute with an `<title>` sub-element.| 
-| **YES** |navref-keyref-deprecated|The `<navref>` element will no longer support the `keyref` attribute in DITA 2.0.|Delete the attribute| 
-| **YES** |navtitle-deprecated|The `navtitle` attribute will no longer be supported in DITA 2.0.|Replace the `navtitle` attribute with an `<navtitle>` sub-element.| 
-| **YES** |print-deprecated|The `print` attribute will no longer be supported in DITA 2.0.|Delete the attribute| 
-| **YES** |query-deprecated|The `query` attribute will no longer be supported in DITA 2.0.|Delete the attribute| 
-| **YES** |refcols-deprecated|The `refcols` attribute will no longer be supported in DITA 2.0.|Delete the attribute| 
-| **YES** |relcolspec-collection-type-deprecated|`<relcolspec>` elements will no longer support the `collection-type` attribute in DITA 2.0.|Delete the attribute| 
-| **YES** |reltable-collection-type-deprecated|`<reltable>` elements will no longer support the `collection-type` attribute in DITA 2.0.|Delete the attribute| 
-| **YES** |role-external-deprecated|`role="external"` is not supported in DITA 2.0. |Delete the attribute or replace with `scope` and `format`| 
-| **YES** |role-sample-deprecated|`role="sample"` is not supported in DITA 2.0.|Delete the attribute.| 
-| **YES** |topichead-locktitle-deprecated|`<topichead>` elements will no longer support the `locktitle` attribute in DITA 2.0.|Delete the attribute.| 
+| **YES** |linklist-collection-type-tree-deprecated|The `<linklist>` element will no longer support `collection-type="tree"` in DITA 2.0.|Replace the value|
+| **YES** |linkpool-collection-type-tree-deprecated|The `<linkpool>` element will no longer support `collection-type="tree"` in DITA 2.0.|Replace the value|
+| **YES** |lq-type-deprecated|The `<lq>` element will no longer support the `type` attribute in DITA 2.0.|Delete the attribute|
+| **YES** |map-title-deprecated|The `<map>` element will no longer support the `title` attribute in DITA 2.0.|Replace the `title` attribute with an `<title>` sub-element.|
+| **YES** |navref-keyref-deprecated|The `<navref>` element will no longer support the `keyref` attribute in DITA 2.0.|Delete the attribute|
+| **YES** |navtitle-deprecated|The `navtitle` attribute will no longer be supported in DITA 2.0.|Replace the `navtitle` attribute with an `<navtitle>` sub-element.|
+| **YES** |print-deprecated|The `print` attribute will no longer be supported in DITA 2.0.|Delete the attribute|
+| **YES** |query-deprecated|The `query` attribute will no longer be supported in DITA 2.0.|Delete the attribute|
+| **YES** |refcols-deprecated|The `refcols` attribute will no longer be supported in DITA 2.0.|Delete the attribute|
+| **YES** |relcolspec-collection-type-deprecated|`<relcolspec>` elements will no longer support the `collection-type` attribute in DITA 2.0.|Delete the attribute|
+| **YES** |reltable-collection-type-deprecated|`<reltable>` elements will no longer support the `collection-type` attribute in DITA 2.0.|Delete the attribute|
+| **YES** |role-external-deprecated|`role="external"` is not supported in DITA 2.0. |Delete the attribute or replace with `scope` and `format`|
+| **YES** |role-sample-deprecated|`role="sample"` is not supported in DITA 2.0.|Delete the attribute.|
+| **YES** |topichead-locktitle-deprecated|`<topichead>` elements will no longer support the `locktitle` attribute in DITA 2.0.|Delete the attribute.|
 | **YES** |topicgroup-locktitle-deprecated|`<topicgroup>` elements will no longer support the `locktitle` attribute in DITA 2.0.|Delete the attribute.|

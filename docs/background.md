@@ -1,6 +1,3 @@
-Background
-==========
-
 What Is Valid XML?
 ------------------
 

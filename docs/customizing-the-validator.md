@@ -1,8 +1,3 @@
-
-
-Customizing the Validator
-=========================
-
 Adding New Validator Rules
 --------------------------
 
