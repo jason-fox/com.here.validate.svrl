@@ -240,7 +240,7 @@ Once the command has run, the DITA files are updated and fixable errors and warn
     files if this parameter is present
 -   `args.validate.check.case` - Comma separated list of words which have a specified capitalization
 -   `args.validate.color` - When set, errors and warnings are Output highlighted using ANSI color codes
--   `args.validate.mode` - Validation reporting mode. The following values are supported: 
+-   `args.validate.mode` - Validation reporting mode. The following values are supported:
     -   `strict` - Outputs both warnings and errors. Fails on errors and warnings.
     -   `default` - Outputs both warnings and errors. Fails on errors only
     -   `lax` - Ignores all warnings and outputs errors only. Fails on Errors only
