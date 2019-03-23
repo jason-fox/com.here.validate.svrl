@@ -73,37 +73,6 @@
 			project.log(input, 1);
 		]]>
 	</scriptdef>
-	<!--
-		Fail the validation. This has been extracted to ensure
-		messages can be displayed easily under DITA-OT 2.x
-	-->
-	<macrodef name="svrl-failure">
-		<sequential>
-			<dita-ot-fail id="SVRL001F" unless:set="otversion.legacy">
-				<param name="1" value="Errors detected during validation"/>
-			</dita-ot-fail>
-			<fail if:set="otversion.legacy" message="Errors detected during validation" taskname="SVRL001F"/>
-		</sequential>
-	</macrodef>
-	<!--
-		Write something to the message log. This has been extracted to ensure
-		messages can be displayed easily under DITA-OT 2.x
-
-		@param id - the ID of the resource string
-		@param message - the text of the message
-		@param level - the logging level (e.g. warning) 
-	-->
-	<macrodef name="svrl-log">
-		<attribute name="id"/>
-		<attribute name="message"/>
-		<attribute name="level"/>
-		<sequential>
-			<dita-ot-echo id="@{id}" unless:set="otversion.legacy">
-				<param name="1" value="@{message}"/>
-			</dita-ot-echo>
-			<echo if:set="otversion.legacy" level="@{level}" message="@{message}" taskname="@{id}"/>
-		</sequential>
-	</macrodef>
 
 	<!--
 		Fix up Markdown and MDITA files so that they are processable by DITA-OT

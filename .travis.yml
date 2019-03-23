@@ -27,7 +27,3 @@ jobs:
       after_success:
         - cp dita-ot-$DITA_OT/plugins/fox.jason.unit-test/resource/pom.xml pom.xml
         - mvn clean org.eluder.coveralls:coveralls-maven-plugin:report
-
-    - stage: test
-      name: "Unit Tests: DITA_OT=2.5.4"
-      env: DITA_OT=2.5.4

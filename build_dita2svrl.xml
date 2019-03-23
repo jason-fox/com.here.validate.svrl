@@ -25,9 +25,7 @@
 			<pathelement location="${dita.dir}/lib/ant-launcher.jar"/>
 			<pathelement location="${dita.dir}/lib/ant.jar"/>
 		</path>
-		<condition property="otversion.legacy">
-			<matches pattern="^[1|2].*" string="${otversion}"/>
-		</condition>
+
 		<typedef file="${dita.plugin.com.here.validate.svrl.dir}/resource/macros.xml"/>
 		<!-- Use the default location for the schematron customization if this is not set -->
 		<property name="svrl.customization.dir" value="${dita.plugin.com.here.validate.svrl.dir}/xsl"/>
@@ -136,7 +134,10 @@
 		Do not update the cache yet.
 	-->
 	<target name="validate-against-doctype" unless="is_windows">
-		<svrl-log id="SVRL002I" level="info" message="Running DTD validation"/>
+		<dita-ot-echo id="SVRL002I">
+			<param name="1" value="Running DTD validation"/>
+		</dita-ot-echo>
+
 		<xmlvalidate failonerror="true" lenient="no" warn="yes">
 			<xmlcatalog refid="dita.catalog"/>
 			<fileset dir="${args.input.dir}">
@@ -152,9 +153,9 @@
 		Runs a simple find and replace regex over errors that have been discovered.
 	-->
 	<target if="svrl.fix.output" name="svrl.fix-dita">
-
-		<!-- Fix DITA files -->
-		<svrl-log id="SVRL002I" level="info" message="Correcting markup of DITA Files"/>
+		<dita-ot-echo id="SVRL002I">
+			<param name="1" value="Correcting markup of DITA Files"/>
+		</dita-ot-echo>
 		<tempfile destdir="${dita.temp.dir}" property="auto-correct.xml" suffix=".xml" deleteonexit="true"/>
 		<get-fixable-rules file="${svrl.fixable.file}" fixable="fixable.rules"/>
 		<xslt basedir="${svrl.dir}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/auto-correct-output.xsl" in="${svrl.report.file}" out="${auto-correct.xml}" classpathref="dost.class.path">
@@ -169,7 +170,9 @@
 		</ant>
 
 		<!-- Fix Markdown and DITA files -->
-		<svrl-log id="SVRL002I" level="info" message="Correcting markup of Markdown and MDITA Files"/>
+		<dita-ot-echo id="SVRL002I">
+			<param name="1" value="Correcting markup of Markdown and MDITA Files"/>
+		</dita-ot-echo>
 		<fileset id="markdown.fileset" dir="${dita.temp.dir}/dita" casesensitive="yes">
 			<include name="**/*.md"/>
 			<include name="**/*.mdita"/>
@@ -182,7 +185,9 @@
 		Creates a set of SVRL files based on the rule set.
 	-->
 	<target depends="svrl.init, strip-doctype, validate-against-doctype" name="svrl">
-		<svrl-log id="SVRL002I" level="info" message="Running Schematron Ruleset"/>
+		<dita-ot-echo id="SVRL002I">
+			<param name="1" value="Running Schematron Ruleset"/>
+		</dita-ot-echo>
 		<get-validation-rulesets error="ruleset.error" fatal="ruleset.fatal" file="${svrl.ruleset.file}" warning="ruleset.warning"/>
 		<java classname="org.apache.tools.ant.launch.Launcher" classpathref="svrl.classpath" failonerror="true" fork="true" outputproperty="svrl.output">
 			<arg value="-Ddita.dir=${dita.dir}"/>
@@ -210,7 +215,9 @@
 		into one SVRL file
 	 -->
 	<target name="svrl-merge">
-		<svrl-log id="SVRL002I" level="info" message="Merging Schematron Results"/>
+		<dita-ot-echo id="SVRL002I">
+			<param name="1" value="Merging Schematron Results"/>
+		</dita-ot-echo>
 		<xslt classpathref="dost.class.path" force="true" in="${svrl.customization.dir}/dita2svrl.xsl" out="${svrl.report.file}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-merge.xsl">
 			<xmlcatalog refid="dita.catalog"/>
 			<param expression="${dita.temp.dir}/svrl/" name="in"/>
@@ -225,7 +232,9 @@
 		Runs a filter XSLT transform on a merged SVRL file to retrieve human-readable results
 	-->
 	<target if="svrl.echo.output" name="run-filter">
-		<svrl-log id="SVRL002I" level="info" message="Processing Schematron Results"/>
+		<dita-ot-echo id="SVRL002I">
+			<param name="1" value="Processing Schematron Results"/>
+		</dita-ot-echo>
 		<!--
 			Create two temporary files used for recording all validation results
 			and a count of the number of errors/warnings found.
@@ -260,7 +269,9 @@
 	-->
 	<target if="svrl.errors.detected" name="svrl.report">
 		<delete file="${args.validate.cachefile}"/>
-		<svrl-failure/>
+		<dita-ot-fail id="SVRL001F">
+			<param name="1" value="Errors detected during validation"/>
+		</dita-ot-fail>
 	</target>
 	<!--
 		Runs a filter XSLT transform on a merged SVRL file to retrieve human-readable results

@@ -1,13 +1,12 @@
 # DITA Validator for DITA-OT
 
 [![license](https://img.shields.io/github/license/jason-fox/com.here.validate.svrl.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![DITA-OT 3.3](https://img.shields.io/badge/DITA--OT-3.3-blue.svg)](http://www.dita-ot.org/3.2)
-[![DITA-OT 2.5](https://img.shields.io/badge/DITA--OT-2.5-green.svg)](http://www.dita-ot.org/2.5) <br/>
+[![DITA-OT 3.3](https://img.shields.io/badge/DITA--OT-3.3-blue.svg)](http://www.dita-ot.org/3.3) <br/>
 [![Build Status](https://travis-ci.org/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.org/jason-fox/com.here.validate.svrl)
 [![Coverage Status](https://coveralls.io/repos/github/jason-fox/com.here.validate.svrl/badge.svg?branch=master)](https://coveralls.io/github/jason-fox/com.here.validate.svrl?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/dita-validator-for-dita-ot/badge/?version=latest)](https://dita-validator-for-dita-ot.readthedocs.io/en/latest/?badge=latest)
 
-The DITA Validator plug-in for [DITA-OT](http://www.dita-ot.org/) is a structure, style and content linter for DITA
+The DITA Validator plug-in for [DITA-OT](http://www.dita-ot.org/) is a structure, style and content checker for DITA
 documents. The plug-in returns information about the compliance of the document against a **modifiable** series of
 validator rules. The plug-in also supports standard XML validation
 
@@ -22,7 +21,7 @@ The plug-in consists of a single transform which can do the following:
 
 -   [Background](#background)
     -   [What Is Valid XML?](#what-is-valid-xml)
-    -   [Validator compliant DITA](#what-are-valid-source-files-for-dita-ot)
+    -   [Validator compliant DITA](#validator-compliant-dita)
 -   [Install](#install)
     -   [Installing DITA-OT](#installing-dita-ot)
     -   [Installing the Plug-in](#installing-the-plug-in)
@@ -69,14 +68,10 @@ General XML validation rules require that:
 -   A single root element such as `<topic>`, contains all the other elements.
 -   `<topic>` within a DITA document must conform to the `topic.dtd` Document Type Defintion
 
-## What are Valid source files for DITA-OT?
+## Validator compliant DITA
 
-The DITA Validator extends the concept of XML validation to run a series of structure and style compliance rules over
-the source files used by the DITA Open Toolkit.
-
-### Valid DITA for DITA-OT
-
-Sample rules include:
+The DITA Validator extends the concept of XML validation to run a series of structure and style compliance rules. Sample
+rules include:
 
 -   Whether the source files for `<image>` and `<codeblock>` elements exist
 -   Whether `conref` attributes are linking to missing elements
@@ -87,46 +82,31 @@ Sample rules include:
 -   Whether all `id` attributes are lower case and dash separated
 -   Whether any blacklisted words are found within the document.
 -   Whether the document will be unable to render as PDF due to empty `<table>` elements
--   Whether the DITA files use any deprecated markup which will be invalid for DITA 2.0
-
-### Valid Markdown for DITA-OT
-
--   Whether the markdown files have at least one header element
--   Whether the headers increment properly across the markdown file
--   Whether preamble text can be found before the first header
-
-### Valid MDITA for DITA-OT
-
--   Whether the markdown files have at least one header element
--   Whether any deep headers can be found within the MDITA markup
--   Whether preamble text can be found before the first header
 
 # Install
 
-The validator has been tested against [DITA-OT 3.x](http://www.dita-ot.org/download). It is recommended that you upgrade
-to the latest version. Running the validator plug-in against DITA-OT 1.8.5 or earlier versions of DITA-OT will not work
-as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5 this would need to be refactored to use
+The validator has been tested against [DITA-OT 3.0.x](http://www.dita-ot.org/download). It is recommended that you
+upgrade to the latest version. Running the validator plug-in against DITA-OT 1.8.5 or earlier versions of DITA-OT will
+not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5 this would need to be refactored to use
 `getMessage`. The validator can be run safely against DITA-OT 2.x.
 
 ## Installing DITA-OT
 
 The DITA Validator is a plug-in for the DITA Open Toolkit.
 
--   Full installation instructions for downloading DITA-OT can be found
-    [here](https://www.dita-ot.org/3.2/topics/installing-client.html).
+-   Install the DITA-OT distribution JAR file dependencies by running `gradle install` from your clone of the
+    [DITA-OT repository](https://github.com/dita-ot/dita-ot).
 
-    1.  Download the `dita-ot-3.2.zip` package from the project website at
-        [dita-ot.org/download](https://www.dita-ot.org/download)
-    2.  Extract the contents of the package to the directory where you want to install DITA-OT.
-    3.  **Optional**: Add the absolute path for the `bin` directory to the _PATH_ system variable.
+The required dependencies are installed to a local Maven repository in your home directory under
+`.m2/repository/org/dita-ot/dost/`.
 
-    This defines the necessary environment variable to run the `dita` command from the command line.
+-   Run the Gradle distribution task to generate the plug-in distribution package:
 
 ```console
-curl -LO https://github.com/dita-ot/dita-ot/releases/download/3.2/dita-ot-3.2.zip
-unzip -q dita-ot-3.2.zip
-rm dita-ot-3.2.zip
+./gradlew dist
 ```
+
+The distribution ZIP file is generated under `build/distributions`.
 
 ## Installing the Plug-in
 
@@ -161,24 +141,24 @@ Once the command has run, an SVRL file is created
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <svrl:schematron-output>
-    <active-pattern role="dita" name="/running-text-fixme.dita"/>
-    <fired-rule context="common" role="content"/>
-    <failed-assert role="warning" location="/topic/body[1]/section[2]/p[1]">
-        <diagnostic-reference diagnostic="running-text-fixme">
-            Line 20: p - [running-text-fixme]
-            Found 'FIXME' comments in the following text in this &lt;p&gt; element -
-            fix as requested and delete the comment.
+	<active-pattern role="dita" name="/running-text-fixme.dita"/>
+	<fired-rule context="common" role="content"/>
+	<failed-assert role="warning" location="/topic/body[1]/section[2]/p[1]">
+		<diagnostic-reference diagnostic="running-text-fixme">
+			Line 20: p - [running-text-fixme]
+			Found 'FIXME' comments in the following text in this &lt;p&gt; element -
+			fix as requested and delete the comment.
 
-            FIXME This needs to be fixed
-        </diagnostic-reference>
-        </failed-assert>
-    <fired-rule context="common" role="structure"/>
-    <fired-rule context="common" role="style"/>
-    <fired-rule context="topic" role="style"/>
-    <fired-rule context="section" role="style"/>
-    <fired-rule context="section" role="style"/>
-    <active-pattern role="ditamap" name="/document.ditamap"/>
-    <fired-rule context="common" role="structure"/>
+			FIXME This needs to be fixed
+		</diagnostic-reference>
+		</failed-assert>
+	<fired-rule context="common" role="structure"/>
+	<fired-rule context="common" role="style"/>
+	<fired-rule context="topic" role="style"/>
+	<fired-rule context="section" role="style"/>
+	<fired-rule context="section" role="style"/>
+	<active-pattern role="ditamap" name="/document.ditamap"/>
+	<fired-rule context="common" role="structure"/>
 </svrl:schematron-output>
 ```
 
@@ -195,7 +175,7 @@ PATH_TO_DITA_OT/bin/dita -f svrl -i document.ditamap
 Once the command has run, all errors and warnings are echoed to the command line
 
 ```console
-[WARN]   [/out/temp/dita/topics/comment-fixme.dita]
+[WARN]	 [/out/temp/dita/topics/comment-fixme.dita]
  Line 15: section[id="bad"] - [comment-fixme]
 Found 'FIXME' comments within the <section> element - fix as requested and delete the comment.
 
@@ -207,7 +187,7 @@ Found 0 Errors 1 Warnings
 Additionally, if an error occurs, the command will fail
 
 ```console
-[ERROR] [/document.ditamap]
+[ERROR]	[/document.ditamap]
  Line 89: topicref - [href-not-lower-case]
 The value provided in href="topics/FILE-NOT-LOWER-CASE.dita" is invalid, allowed characters are: lowercase, a-z only, words separated by hyphens.
 
@@ -240,12 +220,10 @@ Once the command has run, the DITA files are updated and fixable errors and warn
     files if this parameter is present
 -   `args.validate.check.case` - Comma separated list of words which have a specified capitalization
 -   `args.validate.color` - When set, errors and warnings are Output highlighted using ANSI color codes
--   `args.validate.mode` - Validation reporting mode. The following values are supported:
-    -   `strict` - Outputs both warnings and errors. Fails on errors and warnings.
-    -   `default` - Outputs both warnings and errors. Fails on errors only
-    -   `lax` - Ignores all warnings and outputs errors only. Fails on Errors only
-    -   `report` - Creates an SVRL file
-    -   `fix-dita` - Updates existing DITA files and automatically fixes as many errors as possible
+-   `args.validate.mode` - Validation reporting mode. The following values are supported: - `strict` - Outputs both
+    warnings and errors. Fails on errors and warnings. - `default` - Outputs both warnings and errors. Fails on errors
+    only - `lax` - Ignores all warnings and outputs errors only. Fails on Errors only - `report` - Creates an SVRL
+    file - `fix-dita` - Updates existing DITA files and automatically fixes as many errors as possible
 -   `svrl.customization.dir` - Specifies the customization directory
 -   `svrl.ruleset.file` - Specifies severity of the rules to apply. If this parameter is not present, default severity
     levels will be used.
@@ -262,23 +240,23 @@ An ANT build file is supplied in the same directory as the sample document. The 
 <property name="args.input" value="PATH_TO_DITA_DOCUMENT/document.ditamap"/>
 
 <target name="validate" description="validate a document">
-    <exec executable="${dita.exec}" osfamily="unix" failonerror="true">
-        <arg value="-input"/>
-        <arg value="${args.input}"/>
-        <arg value="-output"/>
-        <arg value="${dita.dir}/out/svrl"/>
-        <arg value="-format"/>
-        <arg value="svrl"/>
-        <!-- validation transform specific parameters -->
-        <arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
-        <arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML"/>
-        <arg value="-Dargs.validate.color=true"/>
-    </exec>
-    <!-- For Windows run from a DOS command -->
-    <exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
-        <arg value="/C"/>
-        <arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
-    </exec>
+	<exec executable="${dita.exec}" osfamily="unix" failonerror="true">
+		<arg value="-input"/>
+		<arg value="${args.input}"/>
+		<arg value="-output"/>
+		<arg value="${dita.dir}/out/svrl"/>
+		<arg value="-format"/>
+		<arg value="svrl"/>
+		<!-- validation transform specific parameters -->
+		<arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
+		<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML"/>
+		<arg value="-Dargs.validate.color=true"/>
+	</exec>
+	<!-- For Windows run from a DOS command -->
+	<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
+		<arg value="/C"/>
+		<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
+	</exec>
 </target>
 ```
 
@@ -339,15 +317,15 @@ Specific instances of a rule can be ignored by adding a comment within the `*.di
 ```xml
 ...
 <table platform="pdfonly" frame="none" >
-    <!-- ignore-rule:table-id-missing -->
-    <tgroup cols="1">
-        <colspec colname="c1" colnum="1" colwidth="336pt"/>
-        <tbody>
-            <row>
-                <entry>&#xA0;</entry>
-            </row>
-        </tbody>
-    </tgroup>
+	<!-- ignore-rule:table-id-missing -->
+	<tgroup cols="1">
+		<colspec colname="c1" colnum="1" colwidth="336pt"/>
+		<tbody>
+			<row>
+				<entry>&#xA0;</entry>
+			</row>
+		</tbody>
+	</tgroup>
 </table>
 ```
 
@@ -360,12 +338,12 @@ Some rules such as **FIXME** and **TODO** in the running text need to be double 
 
 ```xml
 <!--
-    We want to display the text below which would usually
-    result in a warning
+	We want to display the text below which would usually
+	result in a warning
 -->
 <p>
-    <!-- ignore-rule:running-text-fixme,comment-fixme -->
-    FIXME is usually banned in the running text.
+	<!-- ignore-rule:running-text-fixme,comment-fixme -->
+	FIXME is usually banned in the running text.
 </p>
 ```
 
@@ -376,22 +354,22 @@ to the block. This is especially useful to avoid false positive TODO warnings fo
 
 ```xml
 <!--
-    We want to display the Spanish text below which would usually
-    result in a series of warnings for the word TODOS
+	We want to display the Spanish text below which would usually
+	result in a series of warnings for the word TODOS
 -->
 <section xml:lang="es-es" id="legal-es">
-    <!-- ignore-all-warnings -->
-    <title>Avisos legales</title>
-    <p>
-        © 2017 <keyword keyref="brand-name"/> Global B.V. Todos los derechos reservados.
-    </p>
-    <p>
-        Este material, incluidos la documentación y los programas informáticos relacionados, está protegido por derechos de autor controlados
-        por <keyword keyref="brand-name"/>. Todos los derechos están reservados. La copia, incluidos la reproducción, almacenamiento,
-        adaptación o traducción de una parte o de todo este material requiere el consentimiento por escrito de <keyword keyref="brand-name"/>.
-        Este material también contiene información confidencial, que no se puede revelar a otras personas sin el consentimiento previo y
-        por escrito de <keyword keyref="brand-name"/>.
-    </p>
+	<!-- ignore-all-warnings -->
+	<title>Avisos legales</title>
+	<p>
+		© 2017 <keyword keyref="brand-name"/> Global B.V. Todos los derechos reservados.
+	</p>
+	<p>
+		Este material, incluidos la documentación y los programas informáticos relacionados, está protegido por derechos de autor controlados
+		por <keyword keyref="brand-name"/>. Todos los derechos están reservados. La copia, incluidos la reproducción, almacenamiento,
+		adaptación o traducción de una parte o de todo este material requiere el consentimiento por escrito de <keyword keyref="brand-name"/>.
+		Este material también contiene información confidencial, que no se puede revelar a otras personas sin el consentimiento previo y
+		por escrito de <keyword keyref="brand-name"/>.
+	</p>
 <section>
 ```
 
@@ -406,11 +384,11 @@ in-house validation style rules.
 <!-- THIS TOPIC IS GENERATED -->
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="generated-topic" other-props="generated">
-    <!-- ignore-all-warnings, ignore-all-errors -->
-    <title>Topic title</title>
-    <body>
-        Generated Content goes here...
-    </body>
+	<!-- ignore-all-warnings, ignore-all-errors -->
+	<title>Topic title</title>
+	<body>
+		Generated Content goes here...
+	</body>
 </topic>
 ```
 
@@ -423,13 +401,13 @@ Rules set at **FATAL** level cannot be ignored.
 An editable macrofile can be found in `cfg/rulesset/fix-macros.xml`. If a rule can be auto fixed, a macro should be
 added to the file in the following format:
 
-```xml
+```
 <macrodef name="rowsep-invalid">
-    <attribute name="file"/>
-    <attribute name="path"/>
-    <sequential>
-        <delete-attribute file="@{file}" path="@{path}" attr="rowsep"/>
-    </sequential>
+	<attribute name="file"/>
+	<attribute name="path"/>
+	<sequential>
+		<delete-attribute file="@{file}" path="@{path}" attr="rowsep"/>
+	</sequential>
 </macrodef>
 ```
 
@@ -549,15 +527,6 @@ text. Rules in **bold** are examples of custom rules which can be detected if th
 | :x:                | xref-internal-path-not-found            | The referenced path in `<xref href="...">` does not exist. Make sure the path is correct.                                                                                                                                                                                                                                                                                     | When you get this error, the validator cannot resolve the provided path in the file. Make sure the file contains the path. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | :heavy_check_mark: | xref-www-format-invalid                 | `<xref href="..." format="dita">` The specified value points to an external file and cannot have the attribute key/value pair format="dita". Change the format value as appropriate \(for example, format="html"\).                                                                                                                                                           | Specify a value for the `format` attribute for `<xref>` elements. Examples of valid values include `dita`, `html`, and `pdf`. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | :heavy_check_mark: | xref-www-scope-invalid                  | `<xref href="...">` The specified value points to an external file. Specify the attribute key/value pair scope="external".                                                                                                                                                                                                                                                    | The `href` attribute specifies a web page or similar target, which means the `scope` attribute must have the value `external`. Change the value as required. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-
-## Structure Validation for Markdown
-
-| Fix                | Message ID            | Message                                                 | Corrective Action/Comment                                                                                     |
-| ------------------ | --------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| :heavy_check_mark: | header-depth-invalid  | The header depth was invalid expected {n} but was {n+x} | Always increment each header by a single level                                                                |
-| :heavy_check_mark: | header-depth-too-deep | h3 or deeper headers were found in an MDITA file        | MDITA can only supports two levels of header, amend deeper headers to an h1 or h2 or replace with bold markup |
-| :x:                | headers-not-found     | No Headers were found within the file                   | Add at least one h1 header to the file                                                                        |
-| :heavy_check_mark: | text-before-header    | Text was found before the first header in the file      | Delete the text prior to the first header                                                                     |
 
 ## Deprecated Elements
 
