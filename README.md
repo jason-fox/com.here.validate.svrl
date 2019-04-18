@@ -535,6 +535,8 @@ According to the
 elements, attributes and values will cease to be supported under DITA 2.0. These structure rules are all currently set
 to **WARNING** level and are auto-fixable.
 
+> **Note:** The list of deprecated elements is based on the sources found in the [Deprecated DITA plug-in](https://github.com/robander/deprecated-dita)
+
 | Fix                | Message ID                               | Message                                                                                     | Corrective Action/Comment                                                |
 | ------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | :heavy_check_mark: | boolean-deprecated                       | The `<boolean>` element will no longer be supported in DITA 2.0.                            | Replace the `<boolean>` element with a `<state>` element.                |
