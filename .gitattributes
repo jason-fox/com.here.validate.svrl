@@ -1,2 +1,4 @@
-build_dita*.xml linguist-language=Ant Build System
+build_dita2svrl.xml linguist-language=Ant Build System
 run-svrl.xml linguist-language=Ant Build System
+sample/* linguist-vendored
+test/* linguist-vendored
