@@ -63,7 +63,7 @@ General XML validation rules require that:
 
 -   Documents are well formed.
 -   Documents contain only correctly encoded legal Unicode characters.
--   None of the special syntax characters such as "<" and "&" appear except as markup delineators.
+-   None of the special syntax characters such as `<` and `&` appear except as markup delineators.
 -   The beginning and end tags must match exactly, unless tags are self-closing.
 -   A single root element such as `<topic>`, contains all the other elements.
 -   `<topic>` within a DITA document must conform to the `topic.dtd` Document Type Defintion
@@ -85,7 +85,7 @@ rules include:
 
 # Install
 
-The validator has been tested against [DITA-OT 3.0.x](http://www.dita-ot.org/download). It is recommended that you
+The validator has been tested against [DITA-OT 3.x](http://www.dita-ot.org/download). It is recommended that you
 upgrade to the latest version. Running the validator plug-in against DITA-OT 1.8.5 or earlier versions of DITA-OT will
 not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5 this would need to be refactored to use
 `getMessage`. The validator can be run safely against DITA-OT 2.x.
@@ -93,7 +93,6 @@ not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5
 ## Installing DITA-OT
 
 The DITA Validator is a plug-in for the DITA Open Toolkit.
-
 
 -   Full installation instructions for downloading DITA-OT can be found
     [here](https://www.dita-ot.org/3.3/topics/installing-client.html).
@@ -143,24 +142,24 @@ Once the command has run, an SVRL file is created
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <svrl:schematron-output>
-	<active-pattern role="dita" name="/running-text-fixme.dita"/>
-	<fired-rule context="common" role="content"/>
-	<failed-assert role="warning" location="/topic/body[1]/section[2]/p[1]">
-		<diagnostic-reference diagnostic="running-text-fixme">
-			Line 20: p - [running-text-fixme]
-			Found 'FIXME' comments in the following text in this &lt;p&gt; element -
-			fix as requested and delete the comment.
+  <active-pattern role="dita" name="/running-text-fixme.dita"/>
+  <fired-rule context="common" role="content"/>
+  <failed-assert role="warning" location="/topic/body[1]/section[2]/p[1]">
+    <diagnostic-reference diagnostic="running-text-fixme">
+      Line 20: p - [running-text-fixme]
+      Found 'FIXME' comments in the following text in this &lt;p&gt; element -
+      fix as requested and delete the comment.
 
-			FIXME This needs to be fixed
-		</diagnostic-reference>
-		</failed-assert>
-	<fired-rule context="common" role="structure"/>
-	<fired-rule context="common" role="style"/>
-	<fired-rule context="topic" role="style"/>
-	<fired-rule context="section" role="style"/>
-	<fired-rule context="section" role="style"/>
-	<active-pattern role="ditamap" name="/document.ditamap"/>
-	<fired-rule context="common" role="structure"/>
+      FIXME This needs to be fixed
+    </diagnostic-reference>
+    </failed-assert>
+  <fired-rule context="common" role="structure"/>
+  <fired-rule context="common" role="style"/>
+  <fired-rule context="topic" role="style"/>
+  <fired-rule context="section" role="style"/>
+  <fired-rule context="section" role="style"/>
+  <active-pattern role="ditamap" name="/document.ditamap"/>
+  <fired-rule context="common" role="structure"/>
 </svrl:schematron-output>
 ```
 
@@ -177,7 +176,7 @@ PATH_TO_DITA_OT/bin/dita -f svrl -i document.ditamap
 Once the command has run, all errors and warnings are echoed to the command line
 
 ```console
-[WARN]	 [/out/temp/dita/topics/comment-fixme.dita]
+[WARN]   [/out/temp/dita/topics/comment-fixme.dita]
  Line 15: section[id="bad"] - [comment-fixme]
 Found 'FIXME' comments within the <section> element - fix as requested and delete the comment.
 
@@ -189,7 +188,7 @@ Found 0 Errors 1 Warnings
 Additionally, if an error occurs, the command will fail
 
 ```console
-[ERROR]	[/document.ditamap]
+[ERROR] [/document.ditamap]
  Line 89: topicref - [href-not-lower-case]
 The value provided in href="topics/FILE-NOT-LOWER-CASE.dita" is invalid, allowed characters are: lowercase, a-z only, words separated by hyphens.
 
@@ -223,9 +222,11 @@ Once the command has run, the DITA files are updated and fixable errors and warn
 -   `args.validate.check.case` - Comma separated list of words which have a specified capitalization
 -   `args.validate.color` - When set, errors and warnings are Output highlighted using ANSI color codes
 -   `args.validate.mode` - Validation reporting mode. The following values are supported: - `strict` - Outputs both
-    warnings and errors. Fails on errors and warnings. - `default` - Outputs both warnings and errors. Fails on errors
-    only - `lax` - Ignores all warnings and outputs errors only. Fails on Errors only - `report` - Creates an SVRL
-    file - `fix-dita` - Updates existing DITA files and automatically fixes as many errors as possible
+    warnings and errors. Fails on errors and warnings.
+    -   `default` - Outputs both warnings and errors. Fails on errors only
+    -   `lax` - Ignores all warnings and outputs errors only. Fails on Errors only
+    -   `report` - Creates an SVRL file
+    -   `fix-dita` - Updates existing DITA files and automatically fixes as many errors as possible
 -   `svrl.customization.dir` - Specifies the customization directory
 -   `svrl.ruleset.file` - Specifies severity of the rules to apply. If this parameter is not present, default severity
     levels will be used.
@@ -242,23 +243,23 @@ An ANT build file is supplied in the same directory as the sample document. The 
 <property name="args.input" value="PATH_TO_DITA_DOCUMENT/document.ditamap"/>
 
 <target name="validate" description="validate a document">
-	<exec executable="${dita.exec}" osfamily="unix" failonerror="true">
-		<arg value="-input"/>
-		<arg value="${args.input}"/>
-		<arg value="-output"/>
-		<arg value="${dita.dir}/out/svrl"/>
-		<arg value="-format"/>
-		<arg value="svrl"/>
-		<!-- validation transform specific parameters -->
-		<arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
-		<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML"/>
-		<arg value="-Dargs.validate.color=true"/>
-	</exec>
-	<!-- For Windows run from a DOS command -->
-	<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
-		<arg value="/C"/>
-		<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
-	</exec>
+  <exec executable="${dita.exec}" osfamily="unix" failonerror="true">
+    <arg value="-input"/>
+    <arg value="${args.input}"/>
+    <arg value="-output"/>
+    <arg value="${dita.dir}/out/svrl"/>
+    <arg value="-format"/>
+    <arg value="svrl"/>
+    <!-- validation transform specific parameters -->
+    <arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
+    <arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML"/>
+    <arg value="-Dargs.validate.color=true"/>
+  </exec>
+  <!-- For Windows run from a DOS command -->
+  <exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
+    <arg value="/C"/>
+    <arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
+  </exec>
 </target>
 ```
 
@@ -319,15 +320,15 @@ Specific instances of a rule can be ignored by adding a comment within the `*.di
 ```xml
 ...
 <table platform="pdfonly" frame="none" >
-	<!-- ignore-rule:table-id-missing -->
-	<tgroup cols="1">
-		<colspec colname="c1" colnum="1" colwidth="336pt"/>
-		<tbody>
-			<row>
-				<entry>&#xA0;</entry>
-			</row>
-		</tbody>
-	</tgroup>
+  <!-- ignore-rule:table-id-missing -->
+  <tgroup cols="1">
+    <colspec colname="c1" colnum="1" colwidth="336pt"/>
+    <tbody>
+      <row>
+        <entry>&#xA0;</entry>
+      </row>
+    </tbody>
+  </tgroup>
 </table>
 ```
 
@@ -340,12 +341,12 @@ Some rules such as **FIXME** and **TODO** in the running text need to be double 
 
 ```xml
 <!--
-	We want to display the text below which would usually
-	result in a warning
+  We want to display the text below which would usually
+  result in a warning
 -->
 <p>
-	<!-- ignore-rule:running-text-fixme,comment-fixme -->
-	FIXME is usually banned in the running text.
+  <!-- ignore-rule:running-text-fixme,comment-fixme -->
+  FIXME is usually banned in the running text.
 </p>
 ```
 
@@ -356,22 +357,22 @@ to the block. This is especially useful to avoid false positive TODO warnings fo
 
 ```xml
 <!--
-	We want to display the Spanish text below which would usually
-	result in a series of warnings for the word TODOS
+  We want to display the Spanish text below which would usually
+  result in a series of warnings for the word TODOS
 -->
 <section xml:lang="es-es" id="legal-es">
-	<!-- ignore-all-warnings -->
-	<title>Avisos legales</title>
-	<p>
-		© 2017 <keyword keyref="brand-name"/> Global B.V. Todos los derechos reservados.
-	</p>
-	<p>
-		Este material, incluidos la documentación y los programas informáticos relacionados, está protegido por derechos de autor controlados
-		por <keyword keyref="brand-name"/>. Todos los derechos están reservados. La copia, incluidos la reproducción, almacenamiento,
-		adaptación o traducción de una parte o de todo este material requiere el consentimiento por escrito de <keyword keyref="brand-name"/>.
-		Este material también contiene información confidencial, que no se puede revelar a otras personas sin el consentimiento previo y
-		por escrito de <keyword keyref="brand-name"/>.
-	</p>
+  <!-- ignore-all-warnings -->
+  <title>Avisos legales</title>
+  <p>
+    © 2017 <keyword keyref="brand-name"/> Global B.V. Todos los derechos reservados.
+  </p>
+  <p>
+    Este material, incluidos la documentación y los programas informáticos relacionados, está protegido por derechos de autor controlados
+    por <keyword keyref="brand-name"/>. Todos los derechos están reservados. La copia, incluidos la reproducción, almacenamiento,
+    adaptación o traducción de una parte o de todo este material requiere el consentimiento por escrito de <keyword keyref="brand-name"/>.
+    Este material también contiene información confidencial, que no se puede revelar a otras personas sin el consentimiento previo y
+    por escrito de <keyword keyref="brand-name"/>.
+  </p>
 <section>
 ```
 
@@ -386,11 +387,11 @@ in-house validation style rules.
 <!-- THIS TOPIC IS GENERATED -->
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="generated-topic" other-props="generated">
-	<!-- ignore-all-warnings, ignore-all-errors -->
-	<title>Topic title</title>
-	<body>
-		Generated Content goes here...
-	</body>
+  <!-- ignore-all-warnings, ignore-all-errors -->
+  <title>Topic title</title>
+  <body>
+    Generated Content goes here...
+  </body>
 </topic>
 ```
 
@@ -405,11 +406,11 @@ added to the file in the following format:
 
 ```
 <macrodef name="rowsep-invalid">
-	<attribute name="file"/>
-	<attribute name="path"/>
-	<sequential>
-		<delete-attribute file="@{file}" path="@{path}" attr="rowsep"/>
-	</sequential>
+  <attribute name="file"/>
+  <attribute name="path"/>
+  <sequential>
+    <delete-attribute file="@{file}" path="@{path}" attr="rowsep"/>
+  </sequential>
 </macrodef>
 ```
 
@@ -537,7 +538,8 @@ According to the
 elements, attributes and values will cease to be supported under DITA 2.0. These structure rules are all currently set
 to **WARNING** level and are auto-fixable.
 
-> **Note:** The list of deprecated elements is based on the sources found in the [Deprecated DITA plug-in](https://github.com/robander/deprecated-dita)
+> **Note:** The list of deprecated elements is based on the sources found in the
+> [Deprecated DITA plug-in](https://github.com/robander/deprecated-dita)
 
 | Fix                | Message ID                               | Message                                                                                     | Corrective Action/Comment                                                |
 | ------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
