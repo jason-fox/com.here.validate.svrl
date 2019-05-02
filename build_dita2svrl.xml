@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!--
+<?xml version="1.0" encoding="UTF-8"?><!--ant--><!--
 	This file is part of the DITA Validator project.
 	See the accompanying LICENSE file for applicable licenses.
 --><project xmlns:dita="http://dita-ot.sourceforge.net" name="com.here.validate.svrl">
