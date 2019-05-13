@@ -11,7 +11,7 @@
 		<sequential>
 			<local name="fixable.ruleset"/>
 			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="fixable.ruleset"/>
-			<xslt classpathref="dost.class.path" in="@{file}" out="${fixable.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/macros2regex.xsl"/>
+			<xslt in="@{file}" out="${fixable.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/macros2regex.xsl"/>
 			<loadfile failonerror="true" property="@{fixable}" srcfile="${fixable.ruleset}"/>
 		</sequential>
 	</macrodef>
@@ -34,13 +34,13 @@
 			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="fatal.ruleset"/>
 			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="error.ruleset"/>
 			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="warning.ruleset"/>
-			<xslt classpathref="dost.class.path" in="@{file}" out="${fatal.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+			<xslt in="@{file}" out="${fatal.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="fatal" name="LEVEL"/>
 			</xslt>
-			<xslt classpathref="dost.class.path" in="@{file}" out="${error.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+			<xslt in="@{file}" out="${error.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="error" name="LEVEL"/>
 			</xslt>
-			<xslt classpathref="dost.class.path" in="@{file}" out="${warning.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+			<xslt in="@{file}" out="${warning.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="warning" name="LEVEL"/>
 			</xslt>
 			<loadfile failonerror="true" property="@{fatal}" srcfile="${fatal.ruleset}"/>
