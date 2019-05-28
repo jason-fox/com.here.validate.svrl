@@ -1,4 +1,4 @@
-# DITA Validator for DITA-OT
+# DITA Validator for DITA-OT  [<img src="https://jason-fox.github.io/com.here.validate.svrl/lint.png" align="right" width="300">](https://dita-validator-for-dita-ot.rtfd.io/)
 
 [![license](https://img.shields.io/github/license/jason-fox/com.here.validate.svrl.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![DITA-OT 3.3](https://img.shields.io/badge/DITA--OT-3.3-blue.svg)](http://www.dita-ot.org/3.3) <br/>
