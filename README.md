@@ -16,6 +16,8 @@ The plug-in consists of a single transform which can do the following:
 -   Automatically fix common validation errors within the document.
 -   Return a report in _Schematron Validation Report Language_ (`SVRL`) format. More information about SVRL can be found
     at [www.schematron.com](http://www.schematron.com/validators.html)
+    
+:arrow_forward: [Video from DITA-OT Day 2017](https://youtu.be/GJXB5R9CZyI)
 
 # Table of Contents
 
