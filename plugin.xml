@@ -3,9 +3,8 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<plugin id="com.here.validate.svrl" version="3.1.0">
+<plugin id="com.here.validate.svrl" version="3.2.0">
 
-	<feature extension="dita.conductor.transtype.check" value="svrl"/>
 	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
 	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>
 	<transtype abstract="false" desc="DITA Validation" name="svrl">
@@ -29,4 +28,5 @@
 		</param>
 	</transtype>
 	<feature extension="ant.import" file="build_dita2svrl.xml"/>
+	<template file="build_dita2svrl_template.xml"/>
 </plugin>
