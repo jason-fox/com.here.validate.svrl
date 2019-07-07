@@ -65,17 +65,6 @@
 		<condition property="com.here.validate.svrl.output.rule-id" value="false">
 			<isfalse value="${args.validate.output.rule-id}"/>
 		</condition>
-		<condition property="com.here.validate.svrl.color">
-			<or>
-				<and>
-					<os family="unix"/>
-					<not>
-						<isset property="args.validate.color"/>
-					</not>
-				</and>
-				<istrue value="${args.validate.color}"/>
-			</or>
-		</condition>
 		<property name="args.validate.mode" value="default"/>
 
 		<!-- Output to Std Out if not running a report -->

@@ -4,9 +4,6 @@
   See the accompanying LICENSE file for applicable licenses.
 -->
 <plugin id="com.here.validate.svrl" version="3.1.0">
-
-	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
-	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>
 	<transtype abstract="false" desc="DITA Validation" name="svrl">
 		<param desc="Specifies the customization directory." name="svrl.customization.dir" type="dir"/>
 		<param desc="Specifies the ruleset file to use." name="svrl.ruleset.file" type="file"/>
@@ -22,11 +19,12 @@
 			<val desc="SVRL Report only.">report</val>
 			<val desc="Run Automatic error fix command">fix-dita</val>
 		</param>
-		<param desc="Whether to colorize the validation output" name="args.validate.color" type="enum">
-			<val default="true" desc="Output highlights errors and warnings using ANSI color codes">true</val>
-			<val desc="Output does not highlight errors and warnings">false</val>
-		</param>
 	</transtype>
+	<!-- Import the overrides transform's ANT file -->
 	<feature extension="ant.import" file="build_dita2svrl.xml"/>
+	<!-- Ensure the plugin's error and logging messages are available -->
+	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
+	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>
+	<!-- Add a template file to enable overrides to use extension points -->
 	<template file="build_dita2svrl_template.xml"/>
 </plugin>

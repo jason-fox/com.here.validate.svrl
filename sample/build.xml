@@ -82,7 +82,7 @@
 			<!-- validation transform specific parameters -->
 			<arg value="-Dargs.validate.blacklist=(kilo)?metre|colour|teh|seperate"/>
 			<arg value="-Dargs.validate.check.case=Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML"/>
-			<arg value="-Dargs.validate.color=true"/>
+			<arg value="-Dcli.color=true"/>
 		</exec>
 		<!-- For Windows run from a DOS command -->
 		<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">

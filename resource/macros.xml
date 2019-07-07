@@ -60,7 +60,7 @@
 			var lf = String.fromCharCode(10);
 			var input = attributes.get("message");
 
-			var colorize = project.getProperty("com.here.validate.svrl.color");
+			var colorize = project.getProperty("cli.color");
 
 			if (colorize) {
 				input = input.replaceAll( "\\[FATAL" , escape + "[31m[FATAL");

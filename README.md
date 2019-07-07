@@ -16,7 +16,7 @@ The plug-in consists of a single transform which can do the following:
 -   Automatically fix common validation errors within the document.
 -   Return a report in _Schematron Validation Report Language_ (`SVRL`) format. More information about SVRL can be found
     at [www.schematron.com](http://www.schematron.com/validators.html)
-    
+
 :arrow_forward: [Video from DITA-OT Day 2017](https://youtu.be/GJXB5R9CZyI)
 
 # Table of Contents
@@ -198,10 +198,10 @@ Found 1 Errors 0 Warnings
 Error: [SVRL001F][FATAL] Errors detected during validation
 ```
 
-Optionally, the output can be highlighed using ANSI color codes by adding the `args.validate.color` parameter
+Optionally, the output can be highlighed using ANSI color codes by adding the `cli.color` parameter
 
 ```console
-PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dargs.validate.color=true
+PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dcli.color=true
 ```
 
 ### Fix common errors automatically
