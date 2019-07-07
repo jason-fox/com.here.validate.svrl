@@ -3,7 +3,7 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<plugin id="com.here.validate.svrl" version="3.2.0">
+<plugin id="com.here.validate.svrl" version="3.1.0">
 
 	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
 	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>
