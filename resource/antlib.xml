@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
+<!--
+	This file is part of the DITA Validator project.
+	See the accompanying LICENSE file for applicable licenses.
+-->
 <!DOCTYPE project>
 <antlib xmlns:if="ant:if" xmlns:unless="ant:unless">
 
@@ -95,10 +99,9 @@
 		@param  string -   The value to convert
 		@param  to -  The property to set
 	-->
-	<scriptdef language="javascript" name="lower-case">
+	<scriptdef language="javascript" name="lower-case" src="${dita.plugin.com.here.validate.svrl.dir}/resource/lower-case.js">
 		<attribute name="string" />
 		<attribute name="to" />
-		project.setProperty(attributes.get("to"),attributes.get("string").toLowerCase());
 	</scriptdef>
 
 	<!--

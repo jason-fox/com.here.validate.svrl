@@ -53,25 +53,8 @@
 
 		@param message - The string to colorize
 	-->
-	<scriptdef language="javascript" name="svrl-result-echo">
+	<scriptdef language="javascript" name="svrl-result-echo" src="${dita.plugin.com.here.validate.svrl.dir}/resource/result-echo.js">
 		<attribute name="message"/>
-		<![CDATA[
-			var escape = String.fromCharCode(27);
-			var lf = String.fromCharCode(10);
-			var input = attributes.get("message");
-
-			var colorize = project.getProperty("cli.color");
-
-			if (colorize) {
-				input = input.replaceAll( "\\[FATAL" , escape + "[31m[FATAL");
-				input = input.replaceAll( "\\[ERROR" , escape + "[31m[ERROR");
-				input = input.replaceAll( "\\[WARN" , escape + "[33m[WARN");
-				input = input.replaceAll( "\\[INFO" , escape + "[34m[INFO");
-				input = input.replaceAll( "\\n" , escape + "[0m" + lf);
-			}
-
-			project.log(input, 1);
-		]]>
 	</scriptdef>
 
 	<!--
@@ -81,32 +64,9 @@
 		@param dir     - the input dir of the source files
 		@param level   - the location to output the fixed files
 	-->
-	<scriptdef language="javascript" name="fix-markdown">
+	<scriptdef language="javascript" name="fix-markdown" src="${dita.plugin.com.here.validate.svrl.dir}/resource/fix-markdown.js">
 		<attribute name="fileset"/>
 		<attribute name="dir"/>
 		<attribute name="todir"/>
-<![CDATA[
-
-var pluginDir =  project.getProperty("dita.plugin.com.here.validate.svrl.dir");
-var files = attributes.get("fileset").split(';');
-var dir = attributes.get("dir");
-var toDir = attributes.get("todir");
-
-eval('' + org.apache.tools.ant.util.FileUtils.readFully(
-      new java.io.FileReader(pluginDir + '/resource/markdown.js' ) ) );
-
-for (var i = 0; i < files.length; i++){
-
-	if (files[i] !== "") {
-		var type = files[i].endsWith('md') ? 'markdown' : 'mdita';
-		var text = org.apache.tools.ant.util.FileUtils.readFully(
-				new java.io.FileReader(dir + '/' + files[i]));
-		var analysis = Markdown.analyseMarkup(text);
-		var fixedText = Markdown.fixMarkup(text, analysis.headers, type);
-		Markdown.writeMarkup(files[i], fixedText, toDir);
-    }
-}
-
-]]>
 	</scriptdef>
 </antlib>
