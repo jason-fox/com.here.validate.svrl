@@ -94,6 +94,8 @@ not work as it uses the newer `getVariable` template. To work with DITA-OT 1.8.5
 
 ## Installing DITA-OT
 
+<a href="https://www.dita-ot.org"><img src="https://www.dita-ot.org/images/dita-ot-logo.svg" align="right" height="55"></a>
+
 The DITA Validator is a plug-in for the DITA Open Toolkit.
 
 -   Full installation instructions for downloading DITA-OT can be found
@@ -120,6 +122,8 @@ dita -install https://github.com/jason-fox/com.here.validate.svrl/archive/master
 ```
 
 The `dita` command line tool requires no additional configuration.
+
+---
 
 # Usage
 
