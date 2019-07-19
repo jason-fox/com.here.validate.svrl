@@ -5,9 +5,6 @@
 -->
 <!DOCTYPE project>
 <antlib xmlns:if="ant:if" xmlns:unless="ant:unless">
-
-	<taskdef classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpath="${dita.dir}/plugins/com.here.validate.svrl/lib/xmltask.jar" name="xmltask"/>
-
 	<!--
 		Initialisation of the library - defines a fake DTD for XMLTask operations
 	-->

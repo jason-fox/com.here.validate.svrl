@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="dita-ot/plugin.rnc" type="application/relax-ng-compact-syntax"?>
 <!--
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
@@ -20,6 +21,10 @@
 			<val desc="Run Automatic error fix command">fix-dita</val>
 		</param>
 	</transtype>
+	<!--
+    	This plugin requires the XMLTask lib
+  	-->
+  	<require plugin="org.doctales.xmltask"/>
 	<!-- Import the overrides transform's ANT file -->
 	<feature extension="ant.import" file="build_dita2svrl.xml"/>
 	<!-- Ensure the plugin's error and logging messages are available -->
