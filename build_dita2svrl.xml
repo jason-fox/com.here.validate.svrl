@@ -6,7 +6,7 @@
 		Setting up schematron processing. Sets up ant variable defaults
 	-->
 
-	<target description="Preprocess" depends="cats.splash,build-init,passthrough,prismjs" name="svrl.init">
+	<target description="Preprocess" depends="build-init" name="svrl.init">
 		<!-- This defines the output file -->
 		<dita-ot-fail id="DOTA069F">
 			<condition>

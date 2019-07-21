@@ -4,7 +4,7 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<plugin id="com.here.validate.svrl" version="3.1.0">
+<plugin id="com.here.validate.svrl" version="4.0.0">
 	<transtype abstract="false" desc="DITA Validation" name="svrl">
 		<param desc="Specifies the customization directory." name="svrl.customization.dir" type="dir"/>
 		<param desc="Specifies the ruleset file to use." name="svrl.ruleset.file" type="file"/>
