@@ -556,7 +556,7 @@ text. Rules in **bold** are examples of custom rules which can be detected if th
 
 <a name="deprecated-elements"/>
 <details>
-<summary><strong>Deprecated Elements</strong></summary>
+<summary><strong>Deprecated Elements</strong>
 
 According to the
 [DITA 2.0 proposal to remove deprecated markup](https://lists.oasis-open.org/archives/dita/201803/msg00024.html) certain
@@ -565,6 +565,8 @@ to **WARNING** level and are auto-fixable.
 
 > **Note:** The list of deprecated elements is based on the sources found in the
 > [Deprecated DITA plug-in](https://github.com/robander/deprecated-dita)
+
+</summary>
 
 | Fix                | Message ID                               | Message                                                                                     | Corrective Action/Comment                                                |
 | ------------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
