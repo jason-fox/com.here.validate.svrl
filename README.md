@@ -57,9 +57,9 @@ The plug-in consists of a single transform which can do the following:
 -   [License](#license)
 </details>
 
-# Background
+## Background
 
-## What Is Valid XML?
+### What Is Valid XML?
 
 For any DITA publication to build successfully, all its files must contain valid DITA markup.
 
@@ -72,7 +72,7 @@ General XML validation rules require that:
 -   A single root element such as `<topic>`, contains all the other elements.
 -   `<topic>` within a DITA document must conform to the `topic.dtd` Document Type Defintion
 
-## Validator compliant DITA
+### Validator compliant DITA
 
 <a href="https://docs.oasis-open.org/dita/dita/v1.3/dita-v1.3-part0-overview.html"><img src="https://techwhirl-1-wpengine.netdna-ssl.com/wp-content/uploads/2014/02/dita_oasis_logo.jpg" align="right" height="55"></a>
 
@@ -89,7 +89,7 @@ rules include:
 -   Whether any blacklisted words are found within the document.
 -   Whether the document will be unable to render as PDF due to empty `<table>` elements
 
-# Install
+## Install
 
 The validator has been tested against [DITA-OT 3.x](http://www.dita-ot.org/download). It is recommended that you
 upgrade to the latest version. Running the validator plug-in against DITA-OT 1.8.5 or earlier versions of DITA-OT will
@@ -117,7 +117,7 @@ unzip -q dita-ot-3.3.4.zip
 rm dita-ot-3.3.4.zip
 ```
 
-## Installing the Plug-in
+### Installing the Plug-in
 
 -   Run the plug-in installation commands:
 
@@ -130,13 +130,13 @@ The `dita` command line tool requires no additional configuration.
 
 ---
 
-# Usage
+## Usage
 
-## Validating a document from the Command line
+### Validating a document from the Command line
 
 A test document can be found within the plug-in at `PATH_TO_DITA_OT/plugins/com.here.validate.svrl/sample`
 
-### Creating an SVRL file
+#### Creating an SVRL file
 
 To create an SVRL file use the `svrl` transform with the `--args.validate.mode=report` parameter.
 
@@ -174,7 +174,7 @@ Once the command has run, an SVRL file is created
 </svrl:schematron-output>
 ```
 
-### Echoing results to the command line
+#### Echoing results to the command line
 
 To echo results to the command line use the `svrl` transform without specifying a `report`
 
@@ -213,7 +213,7 @@ Optionally, the output can be highlighed using ANSI color codes by adding the `c
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dcli.color=true
 ```
 
-### Fix common errors automatically
+#### Fix common errors automatically
 
 To run the auto-fix command from the command line use the `svrl` transform with the `--args.validate.mode=fix-dita`
 parameter.
@@ -244,7 +244,7 @@ Once the command has run, the DITA files are updated and fixable errors and warn
 -   `svrl.filter.file` - Specifies the location of the XSL file used to filter the echo output. If this parameter is not
     present, the default echo output format will be used.
 
-## Validating a document using ANT
+### Validating a document using ANT
 
 An ANT build file is supplied in the same directory as the sample document. The main target can be seen below:
 
@@ -274,9 +274,9 @@ An ANT build file is supplied in the same directory as the sample document. The 
 </target>
 ```
 
-# Customizing the Validator
+## Customizing the Validator
 
-## Adding New Validator Rules
+### Adding New Validator Rules
 
 This DITA-OT plug-in contains a common ruleset of general validator rules. The ruleset has been designed to be
 applicable to all documents created by all users. To add new custom rules (which only apply to your specific use case)
@@ -284,7 +284,7 @@ you should create a separate custom validator plug-in which extends the base val
 [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) as an example of how to do
 this.
 
-## Altering the severity of a validator rule
+### Altering the severity of a validator rule
 
 The severity of a validator rule can be altered by amending entries in the `cfg/rulesset/default.xml` file The plug-in
 supports four severity levels:
@@ -301,9 +301,9 @@ A custom ruleset file can be passed into the plug-in using the `svrl.ruleset.fil
 PATH_TO_DITA_OT/bin/dita -f svrl-echo -i document.ditamap -Dsvrl.ruleset.file=PATH_TO_CUSTOM/ruleset.xml
 ```
 
-## Ignoring Validator Rules
+### Ignoring Validator Rules
 
-### Removing validator rules globally
+#### Removing validator rules globally
 
 Rules can be made inactive by altering the severity (see above). Alternatively a rule can be commented out in the XSL.
 
@@ -312,7 +312,7 @@ extends the base validator. See the
 [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) as an example of how to do
 this.
 
-### Ignoring a validator rule throughout a document
+#### Ignoring a validator rule throughout a document
 
 Individual rules can be ignored by adding the `args.validate.ignore.rules` parameter to the command line. The value of
 the parameter should be a comma-delimited list of each `rule-id` to ignore.
@@ -323,7 +323,7 @@ For example to ignore the `table-id-missing` validation rule within a document y
 PATH_TO_DITA_OT/dita -f svrl-echo -i document.ditamap -Dargs.validate.ignore.rules=table-id-missing
 ```
 
-### Ignoring a specific instance of a validator rule
+#### Ignoring a specific instance of a validator rule
 
 Specific instances of a rule can be ignored by adding a comment within the `*.dita` file. The comment should start with
 `ignore-rule`, and needs to be added at the location where the error is flagged.
@@ -361,7 +361,7 @@ Some rules such as **FIXME** and **TODO** in the running text need to be double 
 </p>
 ```
 
-### Ignoring all warnings within a block
+#### Ignoring all warnings within a block
 
 A block of DITA can be excluded from firing all rules at **WARNING** level by adding the comment `ignore-all-warnings`
 to the block. This is especially useful to avoid false positive TODO warnings for text which is in Spanish.
@@ -387,7 +387,7 @@ to the block. This is especially useful to avoid false positive TODO warnings fo
 <section>
 ```
 
-### Ignoring all errors within a block
+#### Ignoring all errors within a block
 
 A block of DITA can be excluded from firing all rules at **ERROR** level by adding the comment `ignore-all-errors` to
 the block. This is useful to avoid issues with generated DITA files which are parsable DITA, but which may not satisfy
@@ -408,9 +408,9 @@ in-house validation style rules.
 
 Rules set at **FATAL** level cannot be ignored.
 
-# Customizing the DITA Fixer
+## Customizing the DITA Fixer
 
-## Adding a new fixable rule
+### Adding a new fixable rule
 
 An editable macrofile can be found in `cfg/rulesset/fix-macros.xml`. If a rule can be auto fixed, a macro should be
 added to the file in the following format:
@@ -437,12 +437,12 @@ convenience functions are also available by default:
 -   `put-attribute-value`
 -   `replace-with-subelement`
 
-## Amending a fixable rule
+### Amending a fixable rule
 
 The default functionality applied to fix a broken rule can be amended by altering the macro. If a rule is inactive
 within the ruleset it will not be fixed.
 
-# Sample Document
+## Sample Document
 
 A sample document can be found within the plug-in which can used to test validator rules. The document covers with
 positive and negative test cases. The sample document contains "broken" DITA which **cannot** be built as a PDF
@@ -472,13 +472,15 @@ The `<topic>` files are sorted as follows:
 Note that **extended** rules will only be detected if the `overrides` transform from the
 [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) is used.
 
-# Validator Error Messages
+## Validator Error Messages
 
 The following tables list the validator error messages by type and message ID. Base DITA validator rules are in normal
 text. Rules in **bold** are examples of custom rules which can be detected if the `overrides` transform from the
 [Extended DITA Validator](https://github.com/jason-fox/com.here.validate.svrl.overrides) is used.
 
-## Content Validation
+<a name="content-validation"/>
+<details>
+<summary><strong>Content Validation</strong></summary>
 
 | Fix | Message ID               | Message                                                                                                             | Corrective Action/Comment                                                  |
 | --- | ------------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
@@ -490,7 +492,11 @@ text. Rules in **bold** are examples of custom rules which can be detected if th
 | :x: | running-text-lorem-ipsum | Found dummy text in this <\{name\}\> element, remove or replace with valid content.                                 | Replace the standard lorem ipsum filler text with the correct information. |
 | :x: | running-text-todo        | Found 'TODO' comments in the following text in this <\{name\}\> element - fix as requested and delete the comment.  | Replace the draft content with the correct information.                    |
 
-## Style Validation
+</details>
+
+<a name="style-validation"/>
+<details>
+<summary><strong>Style Validation</strong></summary>
 
 | Fix                | Message ID                    | Message                                                                                                                                                       | Corrective Action/Comment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ------------------ | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -510,7 +516,11 @@ text. Rules in **bold** are examples of custom rules which can be detected if th
 | :heavy_check_mark: | topic-file-mismatch           | The value specified in id="\{name\}" does not match the file name: \{file_name\}. Make sure the `id` value and the file name are the same.                    | In order to assist with search engine optimization \(SEO\) of content, the `id` for `<topic>` elements must be the same as the file name, which also ends up by the name of the HTML file. For more information on topics, see [topic](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/topic.html). For more information on element 'id`s', see [id](http://docs.oasis-open.org/dita/v1.2/os/spec/archSpec/id.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | :heavy_check_mark: | xref-no-format                | Always provide a format attribute in `<xref>` elements, \(for example, format="dita" or format="html"\).                                                      | Specify a value for the `format` attribute for `<xref>` elements. Examples of valid values include `dita`, `html`, and `pdf`. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
-## Structure Validation
+</details>
+
+<a name="structure-validation"/>
+<details>
+<summary><strong>Structure Validation</strong></summary>
 
 | Fix                | Message ID                              | Message                                                                                                                                                                                                                                                                                                                                                                       | Corrective Action/Comment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ------------------ | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -542,7 +552,11 @@ text. Rules in **bold** are examples of custom rules which can be detected if th
 | :heavy_check_mark: | xref-www-format-invalid                 | `<xref href="..." format="dita">` The specified value points to an external file and cannot have the attribute key/value pair format="dita". Change the format value as appropriate \(for example, format="html"\).                                                                                                                                                           | Specify a value for the `format` attribute for `<xref>` elements. Examples of valid values include `dita`, `html`, and `pdf`. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | :heavy_check_mark: | xref-www-scope-invalid                  | `<xref href="...">` The specified value points to an external file. Specify the attribute key/value pair scope="external".                                                                                                                                                                                                                                                    | The `href` attribute specifies a web page or similar target, which means the `scope` attribute must have the value `external`. Change the value as required. For more information on `<xref>` elements, see [xref](http://docs.oasis-open.org/dita/v1.2/os/spec/langref/xref.html).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
-## Deprecated Elements
+</details>
+
+<a name="deprecated-elements"/>
+<details>
+<summary><strong>Deprecated Elements</strong></summary>
 
 According to the
 [DITA 2.0 proposal to remove deprecated markup](https://lists.oasis-open.org/archives/dita/201803/msg00024.html) certain
@@ -575,11 +589,13 @@ to **WARNING** level and are auto-fixable.
 | :heavy_check_mark: | topichead-locktitle-deprecated           | `<topichead>` elements will no longer support the `locktitle` attribute in DITA 2.0.        | Delete the attribute.                                                    |
 | :heavy_check_mark: | topicgroup-locktitle-deprecated          | `<topicgroup>` elements will no longer support the `locktitle` attribute in DITA 2.0.       | Delete the attribute.                                                    |
 
-# Contribute
+</details>
+
+## Contribute
 
 PRs accepted.
 
-# License
+## License
 
 [Apache 2.0](LICENSE) © 2018-2019 HERE Europe B.V.
 
