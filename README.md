@@ -19,8 +19,9 @@ The plug-in consists of a single transform which can do the following:
 
 :arrow_forward: [Video from DITA-OT Day 2017](https://youtu.be/GJXB5R9CZyI)
 
-# Table of Contents
 
+<details>
+<summary><strong>Table of Contents</strong></summary>
 -   [Background](#background)
     -   [What Is Valid XML?](#what-is-valid-xml)
     -   [Validator compliant DITA](#validator-compliant-dita)
@@ -54,6 +55,7 @@ The plug-in consists of a single transform which can do the following:
     -   [Deprecated Elements](#deprecated-elements)
 -   [Contribute](#contribute)
 -   [License](#license)
+</details>
 
 # Background
 
