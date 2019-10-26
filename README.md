@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.org/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.org/jason-fox/com.here.validate.svrl)
 [![Coverage Status](https://coveralls.io/repos/github/jason-fox/com.here.validate.svrl/badge.svg?branch=master)](https://coveralls.io/github/jason-fox/com.here.validate.svrl?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/dita-validator-for-dita-ot/badge/?version=latest)](https://dita-validator-for-dita-ot.readthedocs.io/en/latest/?badge=latest)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.here.validate.svrl&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.here.validate.svrl)
 
 The DITA Validator [DITA-OT Plug-in](https://www.dita-ot.org/plugins) is a structure, style and content checker for DITA
 documents. The plug-in returns information about the compliance of the document against a **modifiable** series of
@@ -21,7 +22,7 @@ The plug-in consists of a single transform which can do the following:
 
 <details>
 <summary><strong>Table of Contents</strong></summary>
-    
+
 -   [Background](#background)
     -   [What Is Valid XML?](#what-is-valid-xml)
     -   [Validator compliant DITA](#validator-compliant-dita)
