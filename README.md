@@ -20,6 +20,8 @@ The plug-in consists of a single transform which can do the following:
 
 :arrow_forward: [Video from DITA-OT Day 2017](https://youtu.be/GJXB5R9CZyI)
 
+[![](https://jason-fox.github.io/com.here.validate.svrl/validation-video.png)](https://youtu.be/GJXB5R9CZyI)
+
 <details>
 <summary><strong>Table of Contents</strong></summary>
 
