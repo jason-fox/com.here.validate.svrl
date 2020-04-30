@@ -216,6 +216,7 @@
 		<xslt force="true" in="${svrl.customization.dir}/dita2svrl.xsl" out="${svrl.report.file}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-merge.xsl">
 			<xmlcatalog refid="dita.catalog"/>
 			<param expression="${dita.temp.dir}/svrl/" name="in"/>
+			<param expression="svrl.xml" name="extension"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
 		</xslt>
 		<!-- Clean up temporary files -->

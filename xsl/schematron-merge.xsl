@@ -12,7 +12,7 @@
 	<!-- Defining that this .xsl generates an indented, UTF8-encoded XML file -->
 	<xsl:output encoding="utf-8" indent="yes" method="xml" omit-xml-declaration="no" standalone="yes"/>
 	<xsl:param name="in">.</xsl:param>
-	<xsl:param name="extension">svrl</xsl:param>
+	<xsl:param name="extension">svrl.xml</xsl:param>
 	<xsl:param name="out">results.svrl</xsl:param>
 	<!--
 		XSLT engine only accept file path that start with 'file:/'

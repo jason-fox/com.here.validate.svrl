@@ -6,7 +6,7 @@
 		Setting up schematron processing. Sets up ant variable defaults
 	-->
 
-	<target description="Preprocess" depends="build-init" name="svrl.init">
+	<target description="Preprocess" depends="prismjs.init,cats.splash,build-init,passthrough,prismjs" name="svrl.init">
 		<!-- This defines the output file -->
 		<dita-ot-fail id="DOTA069F">
 			<condition>
@@ -211,6 +211,7 @@
 		<xslt force="true" in="${svrl.customization.dir}/dita2svrl.xsl" out="${svrl.report.file}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-merge.xsl">
 			<xmlcatalog refid="dita.catalog"/>
 			<param expression="${dita.temp.dir}/svrl/" name="in"/>
+			<param expression="svrl.xml" name="extension"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
 		</xslt>
 		<!-- Clean up temporary files -->

@@ -14,7 +14,7 @@
 		<!--
 			Apply the XSLT defined over the root ditamap This create SVRL files from the *.ditamap and fires the associated Validator ruleset.
 		-->
-		<xslt classpath="${dita.plugin.com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar" destdir="${dita.temp.dir}/svrl/ditamap" extension=".svrl" style="${svrl.customization.dir}/ditamap2svrl.xsl" useImplicitFileset="false">
+		<xslt classpath="${dita.plugin.com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar" destdir="${dita.temp.dir}/svrl/ditamap" extension=".svrl.xml" style="${svrl.customization.dir}/ditamap2svrl.xsl" useImplicitFileset="false">
 			<xmlcatalog refid="dita.catalog"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl">
 				<!--
@@ -48,7 +48,7 @@
 
 			For efficiency, run XSLT Validation against modified files only, if requested.
 		-->
-		<xslt classpath="${com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar" destdir="${dita.temp.dir}/svrl/dita" extension=".svrl" failOnError="false" failOnNoResources="false" style="${svrl.customization.dir}/dita2svrl.xsl" useImplicitFileset="false">
+		<xslt classpath="${com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar" destdir="${dita.temp.dir}/svrl/dita" extension=".svrl.xml" failOnError="false" failOnNoResources="false" style="${svrl.customization.dir}/dita2svrl.xsl" useImplicitFileset="false">
 			<xmlcatalog refid="dita.catalog"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl">
 				<!--
