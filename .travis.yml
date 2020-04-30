@@ -3,7 +3,7 @@ sudo: required
 dist: bionic
 
 jdk:
-  - openjdk10
+  - openjdk11
 
 addons:
   apt:
@@ -21,9 +21,9 @@ before_install:
   - chmod +x dita-ot-$DITA_OT/bin/dita
 
 install:
-  - dita-ot-$DITA_OT/bin/dita --install https://github.com/jason-fox/fox.jason.unit-test/archive/master.zip
-  - dita-ot-$DITA_OT/bin/dita --install https://github.com/doctales/org.doctales.xmltask/archive/master.zip
-  - dita-ot-$DITA_OT/bin/dita --install com.here.validate.svrl.zip
+  - dita-ot-$DITA_OT/bin/dita install https://github.com/jason-fox/fox.jason.unit-test/archive/master.zip
+  - dita-ot-$DITA_OT/bin/dita install https://github.com/doctales/org.doctales.xmltask/archive/master.zip
+  - dita-ot-$DITA_OT/bin/dita install com.here.validate.svrl.zip
 
 script:
   - travis_wait 30 dita-ot-$DITA_OT/bin/dita --input dita-ot-$DITA_OT/plugins/com.here.validate.svrl -f unit-test --output . -v
@@ -32,7 +32,7 @@ jobs:
   include:
     - stage: test
       name: "Unit Tests: DITA_OT=3.4"
-      env: DITA_OT=3.4.1
+      env: DITA_OT=3.5
 
       before_script:
         - dita-ot-$DITA_OT/bin/dita --input dita-ot-$DITA_OT/plugins/com.here.validate.svrl -f xsl-instrument
