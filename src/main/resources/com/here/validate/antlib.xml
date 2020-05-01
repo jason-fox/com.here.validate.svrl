@@ -3,8 +3,77 @@
 	This file is part of the DITA Validator project.
 	See the accompanying LICENSE file for applicable licenses.
 -->
-<!DOCTYPE project>
 <antlib xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+
+	<macrodef name="get-fixable-rules">
+		<attribute default="${svrl.customization.dir}/../cfg/ruleset/fix-macros.xml" name="file"/>
+		<attribute name="fixable"/>
+		<sequential>
+			<local name="fixable.ruleset"/>
+			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="fixable.ruleset"/>
+			<xslt in="@{file}" out="${fixable.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/macros2regex.xsl"/>
+			<loadfile failonerror="true" property="@{fixable}" srcfile="${fixable.ruleset}"/>
+		</sequential>
+	</macrodef>
+	<!--
+		Extract a list of rules to apply at each level
+
+		@param fatal - The property to hold the list of fatals
+		@param error - The property to hold the list of errors
+		@param warning - The property to hold the list of warnings
+	-->
+	<macrodef name="get-validation-rulesets">
+		<attribute default="${svrl.customization.dir}/../cfg/ruleset/${args.validate.ruleset}.xml" name="file"/>
+		<attribute name="fatal"/>
+		<attribute name="error"/>
+		<attribute name="warning"/>
+		<sequential>
+			<local name="fatal.ruleset"/>
+			<local name="error.ruleset"/>
+			<local name="warning.ruleset"/>
+			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="fatal.ruleset"/>
+			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="error.ruleset"/>
+			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="warning.ruleset"/>
+			<xslt in="@{file}" out="${fatal.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+				<param expression="fatal" name="LEVEL"/>
+			</xslt>
+			<xslt in="@{file}" out="${error.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+				<param expression="error" name="LEVEL"/>
+			</xslt>
+			<xslt in="@{file}" out="${warning.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+				<param expression="warning" name="LEVEL"/>
+			</xslt>
+			<loadfile failonerror="true" property="@{fatal}" srcfile="${fatal.ruleset}"/>
+			<loadfile failonerror="true" property="@{error}" srcfile="${error.ruleset}"/>
+			<loadfile failonerror="true" property="@{warning}" srcfile="${warning.ruleset}"/>
+		</sequential>
+	</macrodef>
+	<!--
+		Add ansi color tags to output if requested.
+
+		@param message - The string to colorize
+	-->
+	<taskdef classname="com.here.validate.tasks.ResultEchoTask" name="svrl-result-echo" onerror="ignore"/>
+
+	<!--
+		Fix up Markdown and MDITA files so that they are processable by DITA-OT
+
+		@param fileset - list of files to fix
+		@param dir     - the input dir of the source files
+		@param level   - the location to output the fixed files
+	-->
+	<taskdef classname="com.here.validate.tasks.MarkdownFixTask" name="fix-markdown" onerror="ignore"/>
+
+	<!--
+		Validate Markdown and MDITA files to ensure that they are processable by DITA-OT
+
+		@param fileset - list of files to validate
+		@param dir     - the input dir of the Markdown and MDITA files
+		@param level   - the location to output the SVRL files
+	-->
+	<taskdef classname="com.here.validate.tasks.MarkdownValidateTask" name="validate-markdown" onerror="ignore"/>
+	
 	<!--
 		Initialisation of the library - defines a fake DTD for XMLTask operations
 	-->
@@ -96,10 +165,7 @@
 		@param  string -   The value to convert
 		@param  to -  The property to set
 	-->
-	<scriptdef language="javascript" name="lower-case" src="${dita.plugin.com.here.validate.svrl.dir}/resource/lower-case.js">
-		<attribute name="string" />
-		<attribute name="to" />
-	</scriptdef>
+	<taskdef classname="com.here.validate.tasks.LowerCaseTask" name="lower-case" onerror="ignore"/>
 
 	<!--
 		Amends an attribute value in a given file to lower-case

@@ -22,12 +22,14 @@
 		<path id="svrl.classpath">
 			<fileset dir="${dita.plugin.com.here.validate.svrl.dir}/lib">
 				<include name="*.jar"/>
+				<exclude name="ant*.jar"/>
+				<exclude name="validate*.jar"/>
 			</fileset>
 			<pathelement location="${dita.dir}/lib/ant-launcher.jar"/>
 			<pathelement location="${dita.dir}/lib/ant.jar"/>
 		</path>
 
-		<typedef file="${dita.plugin.com.here.validate.svrl.dir}/resource/macros.xml"/>
+		<taskdef resource="com/here/validate/antlib.xml"/>
 		<!-- Use the default location for the schematron customization if this is not set -->
 		<property name="svrl.customization.dir" value="${dita.plugin.com.here.validate.svrl.dir}/xsl"/>
 		<property name="svrl.filter.file" value="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-output.xsl"/>
