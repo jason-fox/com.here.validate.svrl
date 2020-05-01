@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.DirectoryScanner;
 import org.apache.tools.ant.taskdefs.Echo;
+import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.util.FileUtils;
 
 // Fix up Markdown and MDITA files so that they are processable by DITA-OT
@@ -100,13 +102,12 @@ public class MarkdownFixTask extends MarkdownAnalyseTask {
     if (this.toDir == null) {
       throw new BuildException("You must supply a destination directory");
     }
-    if (this.files == null) {
-      throw new BuildException("You must supply a set of files");
-    }
 
     try {
-      for (String file : files) {
-        if (!"".equals(file)) {
+      for (FileSet fileset : this.filesets) {
+        DirectoryScanner scanner = fileset.getDirectoryScanner(getProject());
+        scanner.scan();
+        for (String file : scanner.getIncludedFiles()) {
           String type = file.endsWith("md") ? "markdown" : "mdita";
           String text = FileUtils.readFully(
             new java.io.FileReader(dir + "/" + file)

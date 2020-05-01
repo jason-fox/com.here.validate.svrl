@@ -170,13 +170,14 @@
 		<dita-ot-echo id="SVRL002I">
 			<param name="1" value="Correcting markup of Markdown and MDITA Files"/>
 		</dita-ot-echo>
-		<fileset id="markdown.fileset" dir="${dita.temp.dir}/dita" casesensitive="yes">
-			<include name="**/*.md"/>
-			<include name="**/*.mdita"/>
-		</fileset>
+		
 
-		<property name="markdown.files" refid="markdown.fileset"/>
-		<fix-markdown fileset="${markdown.files}" dir="${args.input.dir}" todir="${args.input.dir}"/>
+		<fix-markdown dir="${args.input.dir}" todir="${args.input.dir}">
+			<fileset dir="${dita.temp.dir}/dita" casesensitive="yes">
+				<include name="**/*.md"/>
+				<include name="**/*.mdita"/>
+			</fileset>
+		</fix-markdown>
 	</target>
 	<!--
 		Creates a set of SVRL files based on the rule set.
@@ -215,13 +216,13 @@
 		</dita-ot-fail>
 		<echo level="verbose" message="${svrl.output}" taskname="dita-ot"/>
 
-		<fileset id="markdown.fileset" dir="${dita.temp.dir}/dita" casesensitive="yes">
-  			<include name="**/*.md"/>
-  			<include name="**/*.mdita"/>
-		</fileset>
 
-		<property name="markdown.files" refid="markdown.fileset"/>
-		<validate-markdown fileset="${markdown.files}" dir="${dita.temp.dir}/dita" todir="${dita.temp.dir}/svrl/dita" />
+		<validate-markdown dir="${dita.temp.dir}/dita" todir="${dita.temp.dir}/svrl/dita">
+			<fileset dir="${dita.temp.dir}/dita" casesensitive="yes">
+	  			<include name="**/*.md"/>
+	  			<include name="**/*.mdita"/>
+			</fileset>
+		</validate-markdown>
 	</target>
 	<!--
 		Merge validation artifacts e.g. SVRL per DITA file from the previous transformation

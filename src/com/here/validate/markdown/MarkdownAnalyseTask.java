@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import org.apache.tools.ant.Task;
+import org.apache.tools.ant.types.FileSet;
 
 //
 //  Copy existing file to avoid running a real text-speech service
@@ -22,7 +23,7 @@ public class MarkdownAnalyseTask extends Task {
   /**
    * Field files.
    */
-  protected String[] files;
+  protected List<FileSet> filesets;
   /**
    * Field dir.
    */
@@ -37,7 +38,7 @@ public class MarkdownAnalyseTask extends Task {
    */
   public MarkdownAnalyseTask() {
     super();
-    this.files = null;
+    this.filesets = new ArrayList<>();
     this.dir = null;
     this.toDir = null;
     this.regex = Pattern.compile("\\[.*\\]\\(.*\\)", Pattern.CASE_INSENSITIVE);
@@ -110,10 +111,10 @@ public class MarkdownAnalyseTask extends Task {
   /**
    * Method setFiles.
    *
-   * @param files String
+   * @param set FileSet
    */
-  public void setfiles(String files) {
-    this.files = files.split(";");
+  public void addFileset(FileSet set) {
+    this.filesets.add(set);
   }
 
   /**
