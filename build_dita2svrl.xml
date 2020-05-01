@@ -179,7 +179,7 @@
 			<param name="1" value="Running Schematron Ruleset"/>
 		</dita-ot-echo>
 		<get-validation-rulesets error="ruleset.error" fatal="ruleset.fatal" file="${svrl.ruleset.file}" warning="ruleset.warning"/>
-		<java classname="org.apache.tools.ant.launch.Launcher" classpathref="svrl.classpath" failonerror="true" fork="true" outputproperty="svrl.output">
+		<java classname="org.apache.tools.ant.launch.Launcher" classpathref="svrl.classpath" failonerror="false" fork="true" outputproperty="svrl.output" resultproperty="svrl.result">
 			<arg value="-Ddita.dir=${dita.dir}"/>
 			<arg value="-buildfile"/>
 			<arg value="${dita.plugin.com.here.validate.svrl.dir}/run-svrl.xml"/>
@@ -198,6 +198,14 @@
 			<arg value="-Dargs.validate.cachefile=${args.validate.cachefile}"/>
 			<arg value="-v"/>
 		</java>
+		<dita-ot-fail id="SVRL001F">
+			<condition>
+				<not>
+					<equals arg1="${svrl.result}" arg2="0"/>
+				</not>
+			</condition>
+			<param name="1" value="${svrl.output}"/>
+		</dita-ot-fail>
 		<echo level="verbose" message="${svrl.output}" taskname="dita-ot"/>
 	</target>
 	<!--
