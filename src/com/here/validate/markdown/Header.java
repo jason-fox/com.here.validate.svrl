@@ -78,15 +78,15 @@ public class Header {
   public String toString() {
     return (
       " line: " +
-      String.valueOf(line) +
+      line +
       " text: " +
       text +
       " depth: " +
-      String.valueOf(depth) +
+      depth +
       " expectedDepth: " +
-      String.valueOf(expectedDepth) +
+      expectedDepth +
       " parent: " +
-      String.valueOf(parent)
+      parent
     );
   }
 }

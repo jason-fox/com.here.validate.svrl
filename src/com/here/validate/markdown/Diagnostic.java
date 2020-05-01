@@ -9,24 +9,26 @@ public enum Diagnostic {
   TEXT_BEFORE_HEADER(
     "text-before-header",
     "Text was found before the first header",
-    "warning"
+    Role.WARNING.getText()
   ),
-  HEADERS_NOT_FOUND("headers-not-found", "No Headers found in file", "error"),
+  HEADERS_NOT_FOUND("headers-not-found", 
+    "No Headers found in file", 
+    Role.ERROR.getText()),
   HEADER_DEPTH_INVALID(
     "header-depth-invalid",
     "Header depth invalid - expected %1 but was %2",
-    "error"
+    Role.ERROR.getText()
   ),
   HEADER_DEPTH_TOO_DEEP(
     "header-depth-too-deep",
     "Header depth too deep - level %1 is not allowed in MDITA",
-    "error"
+    Role.ERROR.getText()
   );
 
   private final String text;
   private final String role;
   private final String id;
-
+ 
   Diagnostic(String id, String text, String role) {
     this.id = id;
     this.text = text;

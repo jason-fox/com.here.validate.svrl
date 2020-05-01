@@ -49,8 +49,6 @@ public class MarkdownValidateTask extends MarkdownAnalyseTask {
 
     if ("markdown".equals(type)) {
       for (Header header : headers) {
-        //getProject().log(header.toString(), 0);
-
         if (header.isInvalid()) {
           svrl += Diagnostic.HEADER_DEPTH_INVALID.failedAssert(header);
         }
