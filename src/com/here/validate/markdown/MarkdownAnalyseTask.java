@@ -3,11 +3,8 @@
  *  See the accompanying LICENSE file for applicable licenses.
  */
 
-package com.here.validate.tasks;
+package com.here.validate.markdown;
 
-import com.here.validate.markdown.Analysis;
-import com.here.validate.markdown.Header;
-import com.here.validate.markdown.Xref;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -44,41 +41,10 @@ public class MarkdownAnalyseTask extends Task {
     this.regex = Pattern.compile("\\[.*\\]\\(.*\\)", Pattern.CASE_INSENSITIVE);
   }
 
-  private void addXref(String line, List<Xref> xrefs) {
-    String[] x = line.split("](");
-    for (int j = 1; j < x.length; j = j + 2) {
-      String href = x[j].split(")")[0];
-      xrefs.add(new Xref(href, href.contains(":")));
-    }
-  }
-
-  private void setParentLevel(List<Header> headers) {
-    int current = (headers.size() - 1);
-    for (int j = current; j > 0; j--) {
-      if (headers.get(j).getDepth() < headers.get(current).getDepth()) {
-        headers.get(current).setParent(j);
-        break;
-      }
-    }
-  }
-
-  private void setExpectedLevel(List<Header> headers) {
-    for (Header header : headers) {
-      if (
-        header.getExpectedDepth() >
-        headers.get(header.getParent()).getExpectedDepth()
-      ) {
-        header.setExpectedDepth(
-          headers.get(header.getParent()).getExpectedDepth() + 1
-        );
-      }
-    }
-  }
-
-  private int getHeaderLevel(String string) {
+  private int headerLevel(String string) {
     int level = 0;
     while (level < string.length()) {
-      if (string.charAt(level) != 35) {
+      if (!"#".equals(string.charAt(level))) {
         break;
       }
       level++;
@@ -101,20 +67,40 @@ public class MarkdownAnalyseTask extends Task {
             new Header(
               i,
               line,
-              getHeaderLevel(line),
-              i > 0 ? getHeaderLevel(line) : 1,
+              headerLevel(line),
+              i > 0 ? headerLevel(line) : 1,
               0
             )
           );
-          setParentLevel(headers);
+
+          int current = (headers.size() - 1);
+          for (int j = current; j > 0; j--) {
+            if (headers.get(j).getDepth() < headers.get(current).getDepth()) {
+              headers.get(current).setParent(j);
+              break;
+            }
+          }
         } else if (this.regex.matcher(line).matches()) {
-          addXref(line, xrefs);
+          String[] x = line.split("](");
+          for (int j = 1; j < x.length; j = j + 2) {
+            String href = x[j].split(")")[0];
+            xrefs.add(new Xref(href, href.contains(":")));
+          }
         }
       }
       i++;
     }
 
-    setExpectedLevel(headers);
+    for (Header header : headers) {
+      if (
+        header.getExpectedDepth() >
+        headers.get(header.getParent()).getExpectedDepth()
+      ) {
+        header.setExpectedDepth(
+          headers.get(header.getParent()).getExpectedDepth() + 1
+        );
+      }
+    }
 
     return new Analysis(headers, xrefs);
   }

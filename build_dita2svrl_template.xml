@@ -216,7 +216,6 @@
 		</dita-ot-fail>
 		<echo level="verbose" message="${svrl.output}" taskname="gen-svrl"/>
 
-
 		<validate-markdown dir="${dita.temp.dir}/dita" todir="${dita.temp.dir}/svrl/dita">
 			<fileset dir="${dita.temp.dir}/dita" casesensitive="yes">
 	  			<include name="**/*.md"/>

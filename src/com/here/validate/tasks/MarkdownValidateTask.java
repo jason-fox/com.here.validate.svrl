@@ -49,6 +49,8 @@ public class MarkdownValidateTask extends MarkdownAnalyseTask {
 
     if ("markdown".equals(type)) {
       for (Header header : headers) {
+        //getProject().log(header.toString(), 0);
+
         if (header.isInvalid()) {
           svrl += Diagnostic.HEADER_DEPTH_INVALID.failedAssert(header);
         }
@@ -110,6 +112,9 @@ public class MarkdownValidateTask extends MarkdownAnalyseTask {
       }
     } catch (IOException e) {
       throw new BuildException("Unable to read file", e);
+    } catch (Exception e) {
+      getProject().log(e.toString(), 0);
+      throw e;
     }
   }
 }

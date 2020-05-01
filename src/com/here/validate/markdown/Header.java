@@ -73,4 +73,20 @@ public class Header {
   public boolean isTooDeep() {
     return this.expectedDepth > 2;
   }
+
+  @Override
+  public String toString() {
+    return (
+      " line: " +
+      String.valueOf(line) +
+      " text: " +
+      text +
+      " depth: " +
+      String.valueOf(depth) +
+      " expectedDepth: " +
+      String.valueOf(expectedDepth) +
+      " parent: " +
+      String.valueOf(parent)
+    );
+  }
 }

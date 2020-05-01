@@ -47,7 +47,7 @@ public enum Diagnostic {
   }
 
   public String failedAssert(int line, String element) {
-    return this.failedAssert(line, element, null, null);
+    return this.failedAssert(line, element, "", "");
   }
 
   private String failedAssert(
@@ -57,7 +57,7 @@ public enum Diagnostic {
     String arg2
   ) {
     String failure =
-      "\t<failed-assert role=\"" + this.role + " location=\"\">\n";
+      "\t<failed-assert role=\"" + this.role + "\" location=\"\">\n";
     failure =
       failure + "\t\t<diagnostic-reference diagnostic=\"" + this.id + "\">";
     failure =
