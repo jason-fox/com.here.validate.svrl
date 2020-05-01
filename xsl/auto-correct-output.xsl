@@ -34,10 +34,17 @@
 				</xsl:attribute>
 			</xsl:element>
 
-			<xsl:element name="typedef">
-				<xsl:attribute name="file">
-					<xsl:text>${com.here.validate.svrl.dir}/resource/antlib.xml</xsl:text>
+			<xsl:element name="taskdef">
+				<xsl:attribute name="resource">
+					<xsl:text>com/here/validate/antlib.xml</xsl:text>
 				</xsl:attribute>
+				<xsl:element name="classpath">
+				    <xsl:element name="pathelement">
+				    	<xsl:attribute name="location">
+				    		<xsl:text>${com.here.validate.svrl.dir}/lib/validation-1.0.jar</xsl:text>
+				    	</xsl:attribute>
+				    </xsl:element>
+				</xsl:element>
 			</xsl:element>
 
 			<xsl:element name="import">
