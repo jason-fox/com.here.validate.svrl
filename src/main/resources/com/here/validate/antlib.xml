@@ -35,18 +35,18 @@
 			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="fatal.ruleset"/>
 			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="error.ruleset"/>
 			<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="warning.ruleset"/>
-			<xslt in="@{file}" out="${fatal.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+			<xslt taskname="fatal-rules" in="@{file}" out="${fatal.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="fatal" name="LEVEL"/>
 			</xslt>
-			<xslt in="@{file}" out="${error.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+			<xslt taskname="error-rules"  in="@{file}" out="${error.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="error" name="LEVEL"/>
 			</xslt>
-			<xslt in="@{file}" out="${warning.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+			<xslt taskname="warning-rules"  in="@{file}" out="${warning.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="warning" name="LEVEL"/>
 			</xslt>
-			<loadfile failonerror="true" property="@{fatal}" srcfile="${fatal.ruleset}"/>
-			<loadfile failonerror="true" property="@{error}" srcfile="${error.ruleset}"/>
-			<loadfile failonerror="true" property="@{warning}" srcfile="${warning.ruleset}"/>
+			<loadfile taskname="load-fatal-rules" failonerror="true" property="@{fatal}" srcfile="${fatal.ruleset}"/>
+			<loadfile taskname="load-error-rules" failonerror="true" property="@{error}" srcfile="${error.ruleset}"/>
+			<loadfile taskname="load-warning-rules" failonerror="true" property="@{warning}" srcfile="${warning.ruleset}"/>
 		</sequential>
 	</macrodef>
 	<!--

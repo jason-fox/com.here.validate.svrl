@@ -5,9 +5,6 @@
 
 package com.here.validate.markdown;
 
-import com.here.validate.markdown.Header;
-import com.here.validate.markdown.Xref;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Analysis {

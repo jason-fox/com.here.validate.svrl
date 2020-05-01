@@ -13,4 +13,12 @@ public class Xref {
     this.href = href;
     this.external = external;
   }
+
+  public String getHref() {
+    return this.href;
+  }
+
+  public boolean isExternal() {
+    return this.external;
+  }
 }

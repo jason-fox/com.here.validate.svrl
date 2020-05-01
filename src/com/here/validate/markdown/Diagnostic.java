@@ -5,8 +5,6 @@
 
 package com.here.validate.markdown;
 
-import com.here.validate.markdown.Header;
-
 public enum Diagnostic {
   TEXT_BEFORE_HEADER(
     "text-before-header",

@@ -5,10 +5,8 @@
 
 package com.here.validate.tasks;
 
-import com.here.validate.markdown.Analysis;
 import com.here.validate.markdown.Diagnostic;
 import com.here.validate.markdown.Header;
-import com.here.validate.markdown.MarkdownAnalyseTask;
 import java.io.IOException;
 import java.util.List;
 import org.apache.tools.ant.BuildException;
@@ -100,7 +98,7 @@ public class MarkdownValidateTask extends MarkdownAnalyseTask {
             new java.io.File(
               toDir +
               "/" +
-              file.substring(0, file.lastIndexOf(".")) +
+              file.substring(0, file.lastIndexOf('.')) +
               ".svrl.xml"
             )
           );

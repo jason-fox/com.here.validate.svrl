@@ -3,7 +3,7 @@
  *  See the accompanying LICENSE file for applicable licenses.
  */
 
-package com.here.validate.markdown;
+package com.here.validate.tasks;
 
 import com.here.validate.markdown.Analysis;
 import com.here.validate.markdown.Header;

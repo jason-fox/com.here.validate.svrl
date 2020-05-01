@@ -135,7 +135,7 @@
 			<param name="1" value="Running DTD validation"/>
 		</dita-ot-echo>
 
-		<xmlvalidate failonerror="true" lenient="no" warn="yes">
+		<xmlvalidate taskname="validate-files" failonerror="true" lenient="no" warn="yes">
 			<xmlcatalog refid="dita.catalog"/>
 			<fileset dir="${args.input.dir}">
 				<include name="**/*.dita"/>
@@ -155,7 +155,7 @@
 		</dita-ot-echo>
 		<tempfile destdir="${dita.temp.dir}" property="auto-correct.xml" suffix=".xml" deleteonexit="true"/>
 		<get-fixable-rules file="${svrl.fixable.file}" fixable="fixable.rules"/>
-		<xslt basedir="${svrl.dir}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/auto-correct-output.xsl" in="${svrl.report.file}" out="${auto-correct.xml}">
+		<xslt taskname="gen-ant" basedir="${svrl.dir}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/auto-correct-output.xsl" in="${svrl.report.file}" out="${auto-correct.xml}">
 
 			<param expression="${dita.dir}" name="DITA_DIR"/>
 			<param expression="${args.input.dir}" name="SOURCE"/>
@@ -187,7 +187,7 @@
 			<param name="1" value="Running Schematron Ruleset"/>
 		</dita-ot-echo>
 		<get-validation-rulesets error="ruleset.error" fatal="ruleset.fatal" file="${svrl.ruleset.file}" warning="ruleset.warning"/>
-		<java classname="org.apache.tools.ant.launch.Launcher" classpathref="svrl.classpath" failonerror="false" fork="true" outputproperty="svrl.output" resultproperty="svrl.result">
+		<java taskname="gen-svrl" classname="org.apache.tools.ant.launch.Launcher" classpathref="svrl.classpath" failonerror="false" fork="true" outputproperty="svrl.output" resultproperty="svrl.result">
 			<arg value="-Ddita.dir=${dita.dir}"/>
 			<arg value="-buildfile"/>
 			<arg value="${dita.plugin.com.here.validate.svrl.dir}/run-svrl.xml"/>
@@ -214,7 +214,7 @@
 			</condition>
 			<param name="1" value="${svrl.output}"/>
 		</dita-ot-fail>
-		<echo level="verbose" message="${svrl.output}" taskname="dita-ot"/>
+		<echo level="verbose" message="${svrl.output}" taskname="gen-svrl"/>
 
 
 		<validate-markdown dir="${dita.temp.dir}/dita" todir="${dita.temp.dir}/svrl/dita">
@@ -232,7 +232,7 @@
 		<dita-ot-echo id="SVRL002I">
 			<param name="1" value="Merging Schematron Results"/>
 		</dita-ot-echo>
-		<xslt force="true" in="${svrl.customization.dir}/dita2svrl.xsl" out="${svrl.report.file}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-merge.xsl">
+		<xslt taskname="merge-svrl" force="true" in="${svrl.customization.dir}/dita2svrl.xsl" out="${svrl.report.file}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/schematron-merge.xsl">
 			<xmlcatalog refid="dita.catalog"/>
 			<param expression="${dita.temp.dir}/svrl/" name="in"/>
 			<param expression="svrl.xml" name="extension"/>
@@ -256,11 +256,11 @@
 		-->
 		<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="output.txt" suffix=".txt"/>
 		<tempfile deleteonexit="true" destdir="${dita.temp.dir}" property="result.txt" suffix=".txt"/>
-		<xslt basedir="${svrl.dir}" in="${svrl.report.file}" out="${output.txt}" style="${svrl.filter.file}">
+		<xslt taskname="filter-svrl" basedir="${svrl.dir}" in="${svrl.report.file}" out="${output.txt}" style="${svrl.filter.file}">
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
 			<param expression="${com.here.validate.svrl.mode}" name="MODE"/>
 		</xslt>
-		<xslt basedir="${svrl.dir}" in="${svrl.report.file}" out="${result.txt}" style="${svrl.result.file}">
+		<xslt taskname="result-svrl" basedir="${svrl.dir}" in="${svrl.report.file}" out="${result.txt}" style="${svrl.result.file}">
 			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
 			<param expression="${com.here.validate.svrl.mode}" name="MODE"/>
 		</xslt>
