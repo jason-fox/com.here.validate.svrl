@@ -15,7 +15,7 @@ addons:
       secure: "rB7cj/DUInirYU7JOlScQ4vSZBpFc+lcfdunNXtfTy6EH1ETXP8oMi2YCDIKZ1zLVx045LF7mJR6paykgGStO6RX+Z9/og7BOVyIE2sl8NOCvase48doVZ6dM7tyav/aYUAHD+AyLCIAN7Vhns+TLeJgqd/v9ExvM3K214mVg5hxTWSELcDNU4ERBXACua07evJ/VCN9tV0if11pBVa6ZvaYp8hXj/PTiax35fmttKg9TIy3PT4fCZpEKMknDFLKJ93ngms49dw3EX4ZK98g2Ehey2hQMdautcO2dYeWzTP66olIPR8BzFidIzQTt3D44erhn52n0sx5EOqmMbVH/ecZrnRz9T4iXKxCQtp1Tk6b5+uWXpx3nG6TMvPeEvl4yDYL4PCR9m19Q8xL7Rh3O88KerYSAukM94n4GcQbabEGU2qjUk8vx6VHLTwoxKfpAajFKGnx9xZe/jxiGvWg8xBAqHViOp1sfvkvene4Y0dTEu8UDLQeyUKnDB4+fB57xAr5bMQSgOqbcuWvtNMSYUfxoGg/2EYaajOsPTZvlA4VqT52wZmLqhl0hrUc7UgGIBrC+/ljZdSlx+DiEBcPg+QojPxAVpM5zLUpH0g05pf64CiYxrR+sThLUC9+H/TsnP4YDK4TZAyPCNzWBzGtKW/BrCrsaxByxAKobMkwN2Q="
 
 env:
-  - DITA_OT=3.5
+  - DITA_OT=3.5.1
 
 before_install:
   - zip -r com.here.validate.svrl.zip . -x *.zip* *.git/* *temp/* *out/*
