@@ -84,12 +84,7 @@
 				${dita.dir}/plugins/com.here.validate.svrl/"/>
 
 			<xmlcatalog id="fake.dita.catalog">
-				<dtd publicId="-//OASIS//DTD DITA Topic//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
-				<dtd publicId="-//OASIS//DTD DITA Map//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
-				<dtd publicId="-//OASIS//DTD DITA BookMap//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
-				<dtd publicId="-//OASIS//DTD DITA DITAVAL//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
-				<dtd publicId="-//OASIS//DTD DITA Concept//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
-				<dtd publicId="-//OASIS//DTD DITA Task//EN" location="${com.here.validate.svrl.dir}/resource/fake.dtd"/>
+				<catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
 			</xmlcatalog>
 		</sequential>
 	</macrodef>
