@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/github/license/jason-fox/com.here.validate.svrl.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![DITA-OT 3.5](https://img.shields.io/badge/DITA--OT-3.5-blue.svg)](http://www.dita-ot.org/3.5)
-[![Build Status](https://travis-ci.org/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.org/jason-fox/com.here.validate.svrl)
+[![Build Status](https://api.travis-ci.com/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.com/github/jason-fox/com.here.validate.svrl)
 [![Coverage Status](https://coveralls.io/repos/github/jason-fox/com.here.validate.svrl/badge.svg?branch=master)](https://coveralls.io/github/jason-fox/com.here.validate.svrl?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/dita-validator-for-dita-ot/badge/?version=latest)](https://dita-validator-for-dita-ot.readthedocs.io/en/latest/?badge=latest)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.here.validate.svrl&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.here.validate.svrl)
