@@ -9,9 +9,24 @@
 		<dependency>
 			<groupId>org.apache.ant</groupId>
 			<artifactId>ant</artifactId>
-			<version>1.10.7</version>
+			<version>1.10.8</version>
 		</dependency>
 	</dependencies>
+
+	<properties>
+		<sonar.projectKey>com.here.validate.svrl</sonar.projectKey>
+		<sonar.organization>dita-ot-plugins</sonar.organization>
+		<sonar.sources>cfg,src,xsl,Customization</sonar.sources>
+		<sonar.coverage.exclusions>src</sonar.coverage.exclusions>
+		<sonar.java.binaries>target/classes/com/here/validate/tasks,target/classes/com/here/validate/markdown</sonar.java.binaries>
+		<sonar.java.libraries>lib/ant-*.jar</sonar.java.libraries>
+		<sonar.test.exclusions>test,sample</sonar.test.exclusions>
+		<sonar.cpd.exclusions>src/com/here/validate/tasks/**,src/com/here/validate/markdown</sonar.cpd.exclusions>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.flex.cobertura.reportPaths>coverage.xml</sonar.flex.cobertura.reportPaths>
+		<sonar.exclusions>coverage.html,test-results.html,pom.xml,coverage.xml</sonar.exclusions>
+
+	</properties>
 	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -63,6 +78,20 @@
 				<configuration>
 					<outputDirectory>${basedir}/lib</outputDirectory>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.3.0.603</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>sonar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
