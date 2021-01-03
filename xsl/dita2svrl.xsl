@@ -26,7 +26,6 @@
 	<xsl:param as="xs:string" name="BLACKLIST"/>
 	<xsl:param as="xs:string" name="CHECK_CASE"/>
 	<xsl:param as="xs:string" name="SOURCE"/>
-	<xsl:param name="DEFAULTLANG">en-us</xsl:param>
 	<xsl:param name="FATAL_RULESET">a^</xsl:param>
 	<xsl:param name="ERROR_RULESET">a^</xsl:param>
 	<xsl:param name="WARNING_RULESET">a^</xsl:param>

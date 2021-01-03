@@ -94,11 +94,6 @@
 		<condition property="is_windows">
 			<os family="windows"/>
 		</condition>
-		<condition property="document.language" value="${default.language}">
-			<not>
-				<isset property="document.language"/>
-			</not>
-		</condition>
 		<copy todir="${dita.temp.dir}/dita">
 			<fileset dir="${args.input.dir}"/>
 		</copy>
@@ -193,6 +188,7 @@
 			<arg value="${dita.plugin.com.here.validate.svrl.dir}/run-svrl.xml"/>
 			<arg value="-Ddita.plugin.com.here.validate.svrl.dir=${dita.plugin.com.here.validate.svrl.dir}"/>
 			<arg value="-Ddita.temp.dir=${dita.temp.dir}"/>
+			<arg value="-Ddefault.language=${default.language}"/>
 			<arg value="-Dsvrl.customization.dir=${svrl.customization.dir}"/>
 			<!-- Parameters for the textual-rules template from the base plug-in -->
 			<arg value="-Dargs.validate.blacklist=${args.validate.blacklist}"/>

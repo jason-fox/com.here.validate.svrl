@@ -8,7 +8,6 @@
 	<xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
 	<xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
 	<!-- These come from the base plug-in -->
-	<xsl:param name="DEFAULTLANG">en-us</xsl:param>
 	<xsl:param as="xs:string" name="IGNORE_RULES" select="''"/>
 	<xsl:param as="xs:string" name="OUTPUT_RULE-ID" select="'true'"/>
 	<xsl:param as="xs:string" name="SOURCE"/>

@@ -33,7 +33,7 @@
 			<param expression="${args.validate.ignore.rules}" name="IGNORE_RULES"/>
 			<param expression="${com.here.validate.svrl.output.rule-id}" name="OUTPUT_RULE-ID"/>
 			<param expression="${dita.temp.dir}/dita" name="SOURCE"/>
-			<param expression="${document.language}" if="document.language" name="DEFAULTLANG"/>
+			<param expression="${default.language}" if="default.language" name="defaultLanguage"/>
 			<param expression="${ruleset.fatal}" name="FATAL_RULESET"/>
 			<param expression="${ruleset.error}" name="ERROR_RULESET"/>
 			<param expression="${ruleset.warning}" name="WARNING_RULESET"/>
@@ -70,7 +70,7 @@
 			<param expression="${args.validate.ignore.rules}" name="IGNORE_RULES"/>
 			<param expression="${com.here.validate.svrl.output.rule-id}" name="OUTPUT_RULE-ID"/>
 			<param expression="${dita.temp.dir}/dita" name="SOURCE"/>
-			<param expression="${document.language}" if="document.language" name="DEFAULTLANG"/>
+			<param expression="${default.language}" if="default.language" name="defaultLanguage"/>
 			<param expression="${ruleset.fatal}" name="FATAL_RULESET"/>
 			<param expression="${ruleset.error}" name="ERROR_RULESET"/>
 			<param expression="${ruleset.warning}" name="WARNING_RULESET"/>

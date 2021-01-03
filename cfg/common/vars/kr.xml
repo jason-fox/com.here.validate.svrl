@@ -77,9 +77,3 @@
 	<variable id="xref-www-format-invalid">&lt;@NAME href="@HREF" format="dita"&gt; links externally and cannot have the attribute specification format="dita".</variable>
 	<variable id="xref-www-scope-invalid">&lt;@NAME href="@HREF"&gt; links externally and must have the attribute specification scope="external".</variable>
 </vars>
-
-
-	<variable id="conref-external-file-not-found"></variable>
-  <variable id="image-href-ref-file-not-found">.</variable>
-
-	<variable id="xref-external-file-not-found"></variable>
