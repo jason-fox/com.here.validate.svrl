@@ -1,6 +1,7 @@
 **/out/**
 **/temp/**
 **/tmp/**
+build_dita2svrl.xml
 
 target/
 classes/
