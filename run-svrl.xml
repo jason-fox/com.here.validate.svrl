@@ -9,15 +9,13 @@
 	-->
 	<target name="run-svrl">
 		<xmlcatalog id="dita.catalog">
-			<catalogpath path="${dita.dir}/catalog-dita.xml"/>
+			<catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
 		</xmlcatalog>
 		
 
 		<path id="dost.class.path">
-			<pathelement location="${dita.dir}/lib/dost.jar"/>
-			<pathelement location="${dita.dir}/lib/dost-configuration.jar"/>
 			<pathelement location="${dita.plugin.com.here.validate.svrl.dir}/lib/saxon-9.1.0.8.jar"/>
-		  </path>
+		</path>
 		<!--
 			Apply the XSLT defined over the root ditamap This create SVRL files from the *.ditamap and fires the associated Validator ruleset.
 		-->

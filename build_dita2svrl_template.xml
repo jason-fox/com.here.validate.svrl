@@ -184,6 +184,7 @@
 		<get-validation-rulesets error="ruleset.error" fatal="ruleset.fatal" file="${svrl.ruleset.file}" warning="ruleset.warning"/>
 		<java taskname="gen-svrl" classname="org.apache.tools.ant.launch.Launcher" classpathref="svrl.classpath" failonerror="false" fork="true" outputproperty="svrl.output" resultproperty="svrl.result">
 			<arg value="-Ddita.dir=${dita.dir}"/>
+			<arg value="-Ddita.plugin.org.dita.base.dir=${dita.plugin.org.dita.base.dir}"/>
 			<arg value="-buildfile"/>
 			<arg value="${dita.plugin.com.here.validate.svrl.dir}/run-svrl.xml"/>
 			<arg value="-Ddita.plugin.com.here.validate.svrl.dir=${dita.plugin.com.here.validate.svrl.dir}"/>
