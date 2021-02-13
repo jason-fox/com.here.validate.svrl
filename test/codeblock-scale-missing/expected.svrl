@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-  <failed-assert location="/topic/body[1]/section[2]/codeblock[1]" role="warning">
-    <diagnostic-reference diagnostic="codeblock-scale-missing">Line 18: codeblock - [codeblock-scale-missing] 
-Always provide a scale attribute in &lt;codeblock&gt; elements (for example, add scale="80").</diagnostic-reference>
-  </failed-assert>
-</svrl:schematron-output>
-
