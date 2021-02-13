@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- @disabled -->
+<!-- Result order is indeterminate -->
 <project basedir="." default="unit-test">
 	<import file="../bootstrap.xml"/>
 	<description>
