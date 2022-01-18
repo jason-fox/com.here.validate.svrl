@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <!--
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
@@ -6,7 +6,11 @@
 <!--
 	Stylesheet that prints the total number of errors encountered.
 -->
-<xsl:stylesheet version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  version="2.0"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+>
 	<xsl:param as="xs:string" name="MODE" select="'default'"/>
 	<!-- Defining that this .xsl generates plain text file -->
 	<xsl:output indent="yes" method="text" omit-xml-declaration="yes"/>

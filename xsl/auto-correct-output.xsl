@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <!--
    This file is part of the DITA Validator project.
    See the accompanying LICENSE file for applicable licenses.
@@ -6,7 +6,11 @@
 <!--
 	Stylesheet that creates an ANT build script based on the dita errors.
 -->
-<xsl:stylesheet version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  version="2.0"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+>
 	<!-- @ignore-instrument -->
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="no"/>
 

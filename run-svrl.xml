@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!--ant-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!--ant-->
 <!--
   This file is part of the Spelling and Grammar Checker project.
   See the accompanying LICENSE file for applicable licenses.
@@ -53,7 +54,15 @@
 
 			For efficiency, run XSLT Validation against modified files only, if requested.
 		-->
-		<xslt classpathref="dost.class.path" destdir="${dita.temp.dir}/svrl/dita" extension=".svrl.xml" failOnError="false" failOnNoResources="false" style="${svrl.customization.dir}/dita2svrl.xsl" useImplicitFileset="false">
+		<xslt
+      classpathref="dost.class.path"
+      destdir="${dita.temp.dir}/svrl/dita"
+      extension=".svrl.xml"
+      failOnError="false"
+      failOnNoResources="false"
+      style="${svrl.customization.dir}/dita2svrl.xsl"
+      useImplicitFileset="false"
+    >
 			<xmlcatalog refid="dita.catalog"/>
 			<factory name="net.sf.saxon.TransformerFactoryImpl">
 				<!--

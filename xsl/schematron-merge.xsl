@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <!--
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
@@ -8,7 +8,16 @@
 	a single .svrl so it can be easily printed to the screen using
 	iso-schematron-svrl-to-message
 -->
-<xsl:stylesheet exclude-result-prefixes="saxon xs" version="2.0" xmlns:saxon="http://saxon.sf.net/" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  exclude-result-prefixes="saxon xs"
+  version="2.0"
+  xmlns:saxon="http://saxon.sf.net/"
+  xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+>
 	<!-- Defining that this .xsl generates an indented, UTF8-encoded XML file -->
 	<xsl:output encoding="utf-8" indent="yes" method="xml" omit-xml-declaration="no" standalone="yes"/>
 	<xsl:param name="in">.</xsl:param>
@@ -24,10 +33,14 @@
 	<xsl:variable name="path">
 		<xsl:choose>
 			<xsl:when test="not(starts-with($in,'file:')) and not(starts-with($in,'/')) ">
-				<xsl:value-of select="translate(concat('file:/', $in ,'?select=*.', $extension ,';recurse=yes;on-error=warning'), '\', '/')"/>
+				<xsl:value-of
+          select="translate(concat('file:/', $in ,'?select=*.', $extension ,';recurse=yes;on-error=warning'), '\', '/')"
+        />
 			</xsl:when>
 			<xsl:when test="starts-with($in,'/')">
-				<xsl:value-of select="translate(concat('file:', $in ,'?select=*.', $extension ,';recurse=yes;on-error=warning'), '\', '/')"/>
+				<xsl:value-of
+          select="translate(concat('file:', $in ,'?select=*.', $extension ,';recurse=yes;on-error=warning'), '\', '/')"
+        />
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:value-of select="translate(concat($in ,'?select=*.', $extension ,';recurse=yes;on-error=warning'), '\', '/')"/>

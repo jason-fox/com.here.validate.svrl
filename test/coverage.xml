@@ -3,7 +3,6 @@
   This file is part of the DITA validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-
 <package name="com.here.validate.svrl">
 	<lines>
 		 <!-- Fatal rules will fail validation (cannot be overriden)-->
@@ -63,4 +62,3 @@
 		<line id="52">topic-file-mismatch</line>
 	</lines>
 </package>
-

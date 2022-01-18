@@ -3,7 +3,12 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<xsl:stylesheet exclude-result-prefixes="java" version="2.0" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  exclude-result-prefixes="java"
+  version="2.0"
+  xmlns:java="http://www.java.com/"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+>
 	<!-- Apply Rules which	apply to xref nodes only -->
 	<xsl:template match="xref" mode="xref-pattern">
 		<!-- style rules -->
@@ -42,13 +47,25 @@
 		<xsl:variable name="isIdRef" select="starts-with(@href, '#') and not(contains(@href, '/'))"/>
 		<xsl:variable name="isIdIdRef" select="starts-with(@href, '#') and contains(@href, '/')"/>
 		<xsl:variable name="isWWWRef" select="starts-with(@href, 'http://') or starts-with(@href, 'https://')"/>
-		<xsl:variable name="isFileRef" select="not($isWWWRef) and not(starts-with(@href, '#')) and not(contains(@href, 'file:/')) and not(contains(@href, 'mailto'))"/>
+		<xsl:variable
+      name="isFileRef"
+      select="not($isWWWRef) and not(starts-with(@href, '#')) and not(contains(@href, 'file:/')) and not(contains(@href, 'mailto'))"
+    />
 		<xsl:variable name="idRefPart" select="if (contains(@href, '#')) then substring-after(@href, '#') else false()"/>
-		<xsl:variable name="idRef" select="if (boolean($idRefPart)) then (if (contains($idRefPart, '/')) then substring-before($idRefPart, '/') else $idRefPart) else false()"/>
+		<xsl:variable
+      name="idRef"
+      select="if (boolean($idRefPart)) then (if (contains($idRefPart, '/')) then substring-before($idRefPart, '/') else $idRefPart) else false()"
+    />
 		<xsl:variable name="idIdRef" select="if ($idRefPart) then substring-after($idRefPart, '/') else false()"/>
-		<xsl:variable name="filePath" select="if (contains(@href, '#'))  then resolve-uri(substring-before(@href, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
+		<xsl:variable
+      name="filePath"
+      select="if (contains(@href, '#'))  then resolve-uri(substring-before(@href, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@href, resolve-uri('.', document-uri(/)))"
+    />
 		<xsl:variable name="file" select="if ($isFileRef) then tokenize($filePath, '/')[last()] else ''"/>
-		<xsl:variable name="isFileRefAndFileExists" select="if ($isFileRef and $file) then java:file-exists($filePath, base-uri()) else false()"/>
+		<xsl:variable
+      name="isFileRefAndFileExists"
+      select="if ($isFileRef and $file) then java:file-exists($filePath, base-uri()) else false()"
+    />
 		<!--
 			xref-internal-id-not-found - <xref>For an href within a single file, the ID linked to must exist
 		-->
@@ -96,7 +113,9 @@
 				<xsl:when test="$idIdRef and not(document($filePath)//*[@id = $idIdRef]/ancestor:: */@id=$idRef)">
 					<xsl:call-template name="failed-assert">
 						<xsl:with-param name="rule-id">xref-external-path-not-found</xsl:with-param>
-						<xsl:with-param name="test">$idIdRef and not(document($filePath)//*[@id = $idIdRef]/ancestor:: */@id=$idRef)</xsl:with-param>
+						<xsl:with-param
+              name="test"
+            >$idIdRef and not(document($filePath)//*[@id = $idIdRef]/ancestor:: */@id=$idRef)</xsl:with-param>
 					</xsl:call-template>
 				</xsl:when>
 			</xsl:choose>

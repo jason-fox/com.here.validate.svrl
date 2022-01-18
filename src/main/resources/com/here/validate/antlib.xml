@@ -38,10 +38,10 @@
 			<xslt taskname="fatal-rules" in="@{file}" out="${fatal.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="fatal" name="LEVEL"/>
 			</xslt>
-			<xslt taskname="error-rules"  in="@{file}" out="${error.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+			<xslt taskname="error-rules" in="@{file}" out="${error.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="error" name="LEVEL"/>
 			</xslt>
-			<xslt taskname="warning-rules"  in="@{file}" out="${warning.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
+			<xslt taskname="warning-rules" in="@{file}" out="${warning.ruleset}" style="${dita.plugin.com.here.validate.svrl.dir}/xsl/ruleset2regex.xsl">
 				<param expression="warning" name="LEVEL"/>
 			</xslt>
 			<loadfile taskname="load-fatal-rules" failonerror="true" property="@{fatal}" srcfile="${fatal.ruleset}"/>
@@ -118,7 +118,7 @@
 		<attribute name="file"/>
 		<attribute name="path"/>
 		<sequential>
-			<xmltask  preservetype="true" outputter="default" indent="false" source="@{file}" dest="@{file}">
+			<xmltask preservetype="true" outputter="default" indent="false" source="@{file}" dest="@{file}">
 				<xmlcatalog refid="fake.dita.catalog"/>
 				<remove path="@{path}"/>
 			</xmltask>

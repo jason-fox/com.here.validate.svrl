@@ -3,7 +3,12 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<xsl:stylesheet exclude-result-prefixes="java" version="2.0" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  exclude-result-prefixes="java"
+  version="2.0"
+  xmlns:java="http://www.java.com/"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+>
 	<!-- Apply Rules which	apply to all nodes  -->
 	<xsl:template match="*" mode="common-pattern">
 		<xsl:call-template name="fired-rule">
@@ -157,17 +162,35 @@
 		Common conref DITA Structure Rules - missing links and ids for content references.
 	-->
 	<xsl:template match="*[@conref]" mode="conref-structure-rules">
-		<xsl:variable name="isFileRef" select="(contains(@conref, '.dita') or contains(@conref, '.xml')) and not(contains(@conref, 'file:/'))"/>
+		<xsl:variable
+      name="isFileRef"
+      select="(contains(@conref, '.dita') or contains(@conref, '.xml')) and not(contains(@conref, 'file:/'))"
+    />
 		<xsl:variable name="isIdRef" select="starts-with(@conref, '#') and not(contains(@conref, '/'))"/>
 		<xsl:variable name="isIdIdRef" select="starts-with(@conref, '#') and contains(@conref, '/')"/>
 		<xsl:variable name="idRefPart" select="if (contains(@conref, '#')) then substring-after(@conref, '#') else false()"/>
-		<xsl:variable name="idRef" select="if (boolean($idRefPart)) then (if (contains($idRefPart, '/')) then substring-before($idRefPart, '/') else $idRefPart) else false()"/>
+		<xsl:variable
+      name="idRef"
+      select="if (boolean($idRefPart)) then (if (contains($idRefPart, '/')) then substring-before($idRefPart, '/') else $idRefPart) else false()"
+    />
 		<xsl:variable name="idIdRef" select="if ($idRefPart) then substring-after($idRefPart, '/') else false()"/>
-		<xsl:variable name="filePath" select="if (contains(@conref, '#')) then resolve-uri(substring-before(@conref, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@conref, resolve-uri('.', document-uri(/)))"/>
+		<xsl:variable
+      name="filePath"
+      select="if (contains(@conref, '#')) then resolve-uri(substring-before(@conref, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@conref, resolve-uri('.', document-uri(/)))"
+    />
 		<xsl:variable name="file" select="if ($isFileRef) then tokenize($filePath, '/')[last()] else ''"/>
-		<xsl:variable name="isFileRefAndFileExists" select="if ($isFileRef and $file) then java:file-exists($filePath, base-uri()) else false()"/>
-		<xsl:variable name="idRefNode" select="if ($isFileRefAndFileExists and $idRef) then document($filePath)//*[@id = $idRef] else false()"/>
-		<xsl:variable name="idIdRefNode" select="if ($isFileRefAndFileExists and ($idRef and $idIdRef)) then document($filePath)//*[@id = $idIdRef] else false()"/>
+		<xsl:variable
+      name="isFileRefAndFileExists"
+      select="if ($isFileRef and $file) then java:file-exists($filePath, base-uri()) else false()"
+    />
+		<xsl:variable
+      name="idRefNode"
+      select="if ($isFileRefAndFileExists and $idRef) then document($filePath)//*[@id = $idRef] else false()"
+    />
+		<xsl:variable
+      name="idIdRefNode"
+      select="if ($isFileRefAndFileExists and ($idRef and $idIdRef)) then document($filePath)//*[@id = $idIdRef] else false()"
+    />
 		<!--
 			conref-internal-id-not-found - For a conref within a single file, the ID linked to must exist
 		-->
@@ -245,7 +268,9 @@
 				<xsl:when test="$idIdRef and not(document($filePath)//*[@id = $idIdRef]/ancestor:: */@id=$idRef)">
 					<xsl:call-template name="failed-assert">
 						<xsl:with-param name="rule-id">conref-external-path-not-found</xsl:with-param>
-						<xsl:with-param name="test">$idIdRef and not(document($filePath)//*[@id = $idIdRef]/ancestor:: */@id=$idRef)</xsl:with-param>
+						<xsl:with-param
+              name="test"
+            >$idIdRef and not(document($filePath)//*[@id = $idIdRef]/ancestor:: */@id=$idRef)</xsl:with-param>
 					</xsl:call-template>
 				</xsl:when>
 				<!--
@@ -278,7 +303,10 @@
 			conref-not-lower-case - For all elements, @conref where it exists, filename must be lower case dash and separated.
 		-->
 		<xsl:variable name="isFileRef" select="not(starts-with(@conref, '#'))"/>
-		<xsl:variable name="filePath" select="if (contains(@conref, '#'))  then resolve-uri(substring-before(@conref, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@conref, resolve-uri('.', document-uri(/)))"/>
+		<xsl:variable
+      name="filePath"
+      select="if (contains(@conref, '#'))  then resolve-uri(substring-before(@conref, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@conref, resolve-uri('.', document-uri(/)))"
+    />
 		<xsl:variable name="file" select="if ($isFileRef) then tokenize($filePath, '/')[last()] else ''"/>
 		<xsl:if test="matches($file, '[A-Z_]+')">
 			<xsl:call-template name="failed-assert">
@@ -305,8 +333,14 @@
 			href-not-lower-case - For all elements, @href where it exists, filename must be lower case dash and separated.
 		-->
 		<xsl:variable name="isWWWRef" select="starts-with(@href, 'http://') or starts-with(@href, 'https://')"/>
-		<xsl:variable name="isFileRef" select="not($isWWWRef) and not(starts-with(@href, '#')) and not(contains(@href, 'file:/')) and not(contains(@href, 'mailto'))"/>
-		<xsl:variable name="filePath" select="if (contains(@href, '#'))  then resolve-uri(substring-before(@href, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@href, resolve-uri('.', document-uri(/)))"/>
+		<xsl:variable
+      name="isFileRef"
+      select="not($isWWWRef) and not(starts-with(@href, '#')) and not(contains(@href, 'file:/')) and not(contains(@href, 'mailto'))"
+    />
+		<xsl:variable
+      name="filePath"
+      select="if (contains(@href, '#'))  then resolve-uri(substring-before(@href, '#'), resolve-uri('.', document-uri(/)))  else resolve-uri(@href, resolve-uri('.', document-uri(/)))"
+    />
 		<xsl:variable name="file" select="if ($isFileRef) then tokenize($filePath, '/')[last()] else ''"/>
 		<xsl:if test="matches($file, '[A-Z_]+')">
 			<xsl:call-template name="failed-assert">

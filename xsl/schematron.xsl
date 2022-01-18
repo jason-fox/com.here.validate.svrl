@@ -3,13 +3,14 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<xsl:stylesheet 
-	version="2.0" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:saxon="http://saxon.sf.net/"
-    xmlns:dita-ot="http://dita-ot.sourceforge.net/ns/201007/dita-ot"
-    exclude-result-prefixes="xs saxon dita-ot" >
+<xsl:stylesheet
+  version="2.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:saxon="http://saxon.sf.net/"
+  xmlns:dita-ot="http://dita-ot.sourceforge.net/ns/201007/dita-ot"
+  exclude-result-prefixes="xs saxon dita-ot"
+>
 
 
 	<xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
@@ -107,7 +108,9 @@
 							<xsl:text>&#xA;</xsl:text>
 						<xsl:choose>
 							<xsl:when test="$human-text = ''">
-								<xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(replace($error-message, '@NAME', string($name)), '@PARENT', string($parent)) , '@ID', string($id)) , '@HREF', string($href)) , '@CONREF', string($conref)) , 'PARAM1', string($param1)) , 'PARAM2', string($param2)) , 'PARAM3', string($param3))"/>
+								<xsl:value-of
+                  select="replace(replace(replace(replace(replace(replace(replace(replace($error-message, '@NAME', string($name)), '@PARENT', string($parent)) , '@ID', string($id)) , '@HREF', string($href)) , '@CONREF', string($conref)) , 'PARAM1', string($param1)) , 'PARAM2', string($param2)) , 'PARAM3', string($param3))"
+                />
 							</xsl:when>
 							<xsl:otherwise>
 								<xsl:value-of select="$human-text"/>
@@ -117,7 +120,9 @@
 				</failed-assert>
 			</xsl:when>
 			<xsl:when test="matches ($rule-id, $ERROR_RULESET)">
-				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-errors')])">
+				<xsl:if
+          test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-errors')])"
+        >
 					<failed-assert>
 						<xsl:attribute name="role">error</xsl:attribute>
 						<xsl:attribute name="location">
@@ -150,7 +155,9 @@
 							<xsl:text>&#xA;</xsl:text>
 							<xsl:choose>
 								<xsl:when test="$human-text = ''">
-									<xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(replace($error-message, '@NAME', string($name)), '@PARENT', string($parent)) , '@ID', string($id)) , '@HREF', string($href)) , '@CONREF', string($conref)) , 'PARAM1', string($param1)) , 'PARAM2', string($param2)) , 'PARAM3', string($param3))"/>
+									<xsl:value-of
+                    select="replace(replace(replace(replace(replace(replace(replace(replace($error-message, '@NAME', string($name)), '@PARENT', string($parent)) , '@ID', string($id)) , '@HREF', string($href)) , '@CONREF', string($conref)) , 'PARAM1', string($param1)) , 'PARAM2', string($param2)) , 'PARAM3', string($param3))"
+                  />
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="$human-text"/>
@@ -161,7 +168,9 @@
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="matches ($rule-id, $WARNING_RULESET)">
-				<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-warnings')])">
+				<xsl:if
+          test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)]) and not(ancestor::*/comment()[contains(., 'ignore-all-warnings')])"
+        >
 					<failed-assert>
 						<xsl:attribute name="role">warning</xsl:attribute>
 						<xsl:attribute name="location">
@@ -196,7 +205,9 @@
 							<xsl:text>&#xA;</xsl:text>
 							<xsl:choose>
 								<xsl:when test="$human-text = ''">
-									<xsl:value-of select="replace(replace(replace(replace(replace(replace(replace(replace($error-message, '@NAME', string($name)), '@PARENT', string($parent)) , '@ID', string($id)) , '@HREF', string($href)) , '@CONREF', string($conref)) , 'PARAM1', string($param1)) , 'PARAM2', string($param2)) , 'PARAM3', string($param3))"/>
+									<xsl:value-of
+                    select="replace(replace(replace(replace(replace(replace(replace(replace($error-message, '@NAME', string($name)), '@PARENT', string($parent)) , '@ID', string($id)) , '@HREF', string($href)) , '@CONREF', string($conref)) , 'PARAM1', string($param1)) , 'PARAM2', string($param2)) , 'PARAM3', string($param3))"
+                  />
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="$human-text"/>
@@ -222,7 +233,9 @@
 		<xsl:param name="param1" select="''"/>
 		<xsl:param name="param2" select="''"/>
 		<xsl:param name="human-text" select="''"/>
-		<xsl:if test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)])">
+		<xsl:if
+      test="not(contains($IGNORE_RULES, $rule-id)) and not(comment()[contains(., 'ignore-rule') and contains(., $rule-id)])"
+    >
 			<successful-report>
 				<xsl:attribute name="role">
 					<xsl:value-of select="$role"/>
@@ -252,8 +265,8 @@
 		Creates a <fired-rule>element consistent with Schematron Validation Report Language definitions
 	-->
 	<xsl:template name="fired-rule">
-		<xsl:param name="context" select="''" />
-		<xsl:param name="role" select="''" />
+		<xsl:param name="context" select="''"/>
+		<xsl:param name="role" select="''"/>
 		<fired-rule>
 			<xsl:attribute name="context">
 				<xsl:value-of select="$context"/>

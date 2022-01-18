@@ -79,10 +79,14 @@
 		<!--
 			table-all-rows-filtered	- <table>If an element contains filtered sub elements, they must not be all of the filter type.
 		-->
-		<xsl:if test="(($table-row-count = $product-row-count) or (($internal-row-count = $product-row-count) and ($external-row-count = 0))) and not(ancestor::topic/@id = 'topic-apiref') ">
+		<xsl:if
+      test="(($table-row-count = $product-row-count) or (($internal-row-count = $product-row-count) and ($external-row-count = 0))) and not(ancestor::topic/@id = 'topic-apiref') "
+    >
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">table-all-rows-filtered</xsl:with-param>
-				<xsl:with-param name="test">(($table-row-count = $product-row-count) or (($internal-row-count = $product-row-count) and ($external-row-count = 0))) </xsl:with-param>
+				<xsl:with-param
+          name="test"
+        >(($table-row-count = $product-row-count) or (($internal-row-count = $product-row-count) and ($external-row-count = 0))) </xsl:with-param>
 				<!-- Placeholders -->
 				<xsl:with-param name="param1" select="./@product"/>
 			</xsl:call-template>
@@ -100,10 +104,14 @@
 		<!--
 			ul-with-no-li-elements	- <ul>If an element contains filtered sub elements,	they must not be all of the filter type.
 		-->
-		<xsl:if test="(($list-li-count = $product-li-count) or (($internal-li-count = $product-li-count) and ($external-li-count = 0)))">
+		<xsl:if
+      test="(($list-li-count = $product-li-count) or (($internal-li-count = $product-li-count) and ($external-li-count = 0)))"
+    >
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">list-all-li-filtered</xsl:with-param>
-				<xsl:with-param name="test">($list-li-count = $product-li-count) or (($internal-li-count = $product-li-count) and ($external-li-count = 0)))</xsl:with-param>
+				<xsl:with-param
+          name="test"
+        >($list-li-count = $product-li-count) or (($internal-li-count = $product-li-count) and ($external-li-count = 0)))</xsl:with-param>
 				<!-- Placeholders -->
 				<xsl:with-param name="param1" select="./@product"/>
 			</xsl:call-template>

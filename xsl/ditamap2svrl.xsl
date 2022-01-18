@@ -15,7 +15,15 @@
 
 	http://standards.iso.org/ittf/PubliclyAvailableStandards/index.html
 -->
-<xsl:stylesheet exclude-result-prefixes="java saxon" version="2.0" xmlns:java="http://www.java.com/" xmlns:saxon="http://saxon.sf.net/" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  exclude-result-prefixes="java saxon"
+  version="2.0"
+  xmlns:java="http://www.java.com/"
+  xmlns:saxon="http://saxon.sf.net/"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+>
 	<!-- Import XSL template that holds a function to some basic SVRL generation functions. -->
 	<xsl:import href="schematron.xsl"/>
 	<!-- Import XSL template that holds a function to accertain that a file exists using the Java Library. -->
@@ -203,7 +211,13 @@
 	<xsl:param name="FATAL_RULESET">a^</xsl:param>
 	<xsl:param name="ERROR_RULESET">a^</xsl:param>
 	<xsl:param name="WARNING_RULESET">a^</xsl:param>
-	<xsl:output indent="yes" method="xml" omit-xml-declaration="no" standalone="yes" xmlns:svrl="http://purl.oclc.org/dsdl/svrl"/>
+	<xsl:output
+    indent="yes"
+    method="xml"
+    omit-xml-declaration="no"
+    standalone="yes"
+    xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+  />
 
 	<xsl:include href="../Customization/xsl/topic.xsl"/>
 	

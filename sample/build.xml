@@ -21,7 +21,7 @@
 	-->
 	<target name="html" description="build an HTML document">
 		<!-- For Unix run the DITA executable-->
-		<exec executable="${dita.exec}" failonerror="false" osfamily="unix" >
+		<exec executable="${dita.exec}" failonerror="false" osfamily="unix">
 			<arg value="-input"/>
 			<arg value="${args.input}"/>
 			<arg value="-output"/>
@@ -37,7 +37,9 @@
 		<!-- For Windows run from a DOS command -->
 		<exec executable="cmd" dir="${dita.dir}/bin" failonerror="false" osfamily="windows" outputproperty="dita.ot.output">
 			<arg value="/C"/>
-			<arg value="dita -input ${args.input} -output ${dita.dir}/out/html -format html5 -Dargs.grammar.cache=yes -Dgenerate-debug-attributes=false -Dargs.artlbl=no -Dargs.csspath=css -Dargs.xhtml.classattr=no -Dargs.xhtml.toc=toc"/>
+			<arg
+        value="dita -input ${args.input} -output ${dita.dir}/out/html -format html5 -Dargs.grammar.cache=yes -Dgenerate-debug-attributes=false -Dargs.artlbl=no -Dargs.csspath=css -Dargs.xhtml.classattr=no -Dargs.xhtml.toc=toc"
+      />
 		</exec>
 	</target>
 
@@ -63,7 +65,7 @@
 		<!-- For Windows run from a DOS command -->
 		<exec executable="cmd" dir="${dita.dir}/bin" osfamily="windows" failonerror="true">
 			<arg value="/C"/>
-			<arg value="dita -input ${args.input} -output ${dita.dir}/out/pdf -format pdf -Dargs.artlbl=no -Dpdf.formatter=fop" />
+			<arg value="dita -input ${args.input} -output ${dita.dir}/out/pdf -format pdf -Dargs.artlbl=no -Dpdf.formatter=fop"/>
 		</exec>
 	</target>
 
@@ -87,7 +89,9 @@
 		<!-- For Windows run from a DOS command -->
 		<exec dir="${dita.dir}/bin" executable="cmd" osfamily="windows" failonerror="true">
 			<arg value="/C"/>
-			<arg value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"/>
+			<arg
+        value="dita -input ${args.input} -output ${dita.dir}/out/svrl -format svrl -Dargs.validate.blacklist=&quot;(kilo)?metre|colour|teh|seperate&quot; -Dargs.validate.check.case=&quot;Bluetooth|HTTP[S]? |IoT|JSON|Java|Javadoc|JavaScript|XML&quot;"
+      />
 		</exec>
 			
 	</target>

@@ -15,7 +15,13 @@
 
 	http://standards.iso.org/ittf/PubliclyAvailableStandards/index.html
 -->
-<xsl:stylesheet version="2.0" xmlns:dita-ot="http://dita-ot.sourceforge.net/ns/201007/dita-ot" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  version="2.0"
+  xmlns:dita-ot="http://dita-ot.sourceforge.net/ns/201007/dita-ot"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+>
 	<!-- Import the standard com.here.validate.svrl ruleset -->
 	<xsl:import href="plugin:com.here.validate.svrl:xsl/ditamap2svrl.xsl"/>
 	<!--

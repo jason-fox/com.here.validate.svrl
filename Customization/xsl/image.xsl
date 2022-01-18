@@ -3,7 +3,12 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<xsl:stylesheet exclude-result-prefixes="java" version="2.0" xmlns:java="http://www.java.com/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet
+  exclude-result-prefixes="java"
+  version="2.0"
+  xmlns:java="http://www.java.com/"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+>
 	<!-- Apply Rules which	apply to image nodes only -->
 	<xsl:template match="image" mode="image-pattern">
 		<!-- style rules -->
@@ -26,10 +31,14 @@
 		<!--
 			image-file-type-not-supported - <image>- invalid file extension (only *.jpg, *.jpeg or *.png are allowed)
 		-->
-		<xsl:if test="not(contains('|jpg|jpeg|png|',concat('|',substring-after(substring(@href,string-length(@href)-4), '.'),'|')))">
+		<xsl:if
+      test="not(contains('|jpg|jpeg|png|',concat('|',substring-after(substring(@href,string-length(@href)-4), '.'),'|')))"
+    >
 			<xsl:call-template name="failed-assert">
 				<xsl:with-param name="rule-id">image-file-type-not-supported</xsl:with-param>
-				<xsl:with-param name="test">not(contains('|jpg|jpeg|png|',concat('|',substring-after(substring(@href,string-length(@href)-4), '.'),'|')))</xsl:with-param>
+				<xsl:with-param
+          name="test"
+        >not(contains('|jpg|jpeg|png|',concat('|',substring-after(substring(@href,string-length(@href)-4), '.'),'|')))</xsl:with-param>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
