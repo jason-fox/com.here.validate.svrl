@@ -3,7 +3,7 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<vars>
+<variables>
 	<variable id="appendices-href-missing">Pour les éléments &lt;@NAME&gt;, il faut un attribut href.</variable>
 	<variable id="blacklisted-word">The word 'PARAM1' is a spelling mistake in the running text below: 
 
@@ -107,4 +107,4 @@ PARAM1</variable>
 	<variable id="xref-no-format">Specifying a format attribute is mandatory for &lt;@NAME&gt; elements, such as format=&quot;dita&quot; or format=&quot;html&quot;.</variable>
 	<variable id="xref-www-format-invalid">&lt;@NAME href=&quot;@HREF&quot; format=&quot;dita&quot;&gt; links externally and cannot have the attribute specification format=&quot;dita&quot;.</variable>
 	<variable id="xref-www-scope-invalid">&lt;@NAME href=&quot;@HREF&quot;&gt; links externally and must have the attribute specification scope=&quot;external&quot;.</variable>
-</vars>
+</variables>
