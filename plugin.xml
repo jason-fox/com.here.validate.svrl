@@ -7,11 +7,6 @@
 <plugin id="com.here.validate.svrl" version="4.1.1">
 	<feature extension="ant.import" file="build_dita2svrl.xml"/>
 	<feature extension="dita.conductor.lib.import" file="lib/validate-1.1.jar"/>
-	<!--
-		This plugin requires the XMLTask lib
-	-->
-	<require plugin="org.doctales.xmltask"/>
-
 	<!-- Ensure the plugin's error and logging messages are available -->
 	<feature extension="dita.xsl.strings" file="cfg/common/vars/strings.xml"/>
 	<feature extension="dita.xsl.messages" file="resource/messages.xml"/>

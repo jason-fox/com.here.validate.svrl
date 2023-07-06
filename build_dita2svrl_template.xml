@@ -43,6 +43,11 @@
 		</path>
 
 		<taskdef resource="com/here/validate/antlib.xml"/>
+		<taskdef classname="com.oopsconsultancy.xmltask.ant.XmlTask" name="xmltask">
+			<classpath>
+				<pathelement location="${dita.plugin.com.here.validate.svrl.dir}/lib/xmltask.jar"/>
+			</classpath>
+		</taskdef>
 		<!-- Use the default location for the schematron customization if this is not set -->
 		<property
       name="svrl.customization.dir"
