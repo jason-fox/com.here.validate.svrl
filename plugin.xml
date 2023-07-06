@@ -4,7 +4,7 @@
   This file is part of the DITA Validator project.
   See the accompanying LICENSE file for applicable licenses.
 -->
-<plugin id="com.here.validate.svrl" version="4.1.1">
+<plugin id="com.here.validate.svrl" version="5.0.0">
 	<feature extension="ant.import" file="build_dita2svrl.xml"/>
 	<feature extension="dita.conductor.lib.import" file="lib/validate-1.1.jar"/>
 	<!-- Ensure the plugin's error and logging messages are available -->
