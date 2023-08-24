@@ -6,6 +6,7 @@ name: CI
   pull_request:
     branches:
       - master
+  workflow_dispatch: null
 jobs:
   sonarcloud:
     name: SonarCloud Scan
