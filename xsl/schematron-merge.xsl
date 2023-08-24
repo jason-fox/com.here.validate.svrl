@@ -10,7 +10,7 @@
 -->
 <xsl:stylesheet
   exclude-result-prefixes="saxon xs"
-  version="2.0"
+  version="3.0"
   xmlns:saxon="http://saxon.sf.net/"
   xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
@@ -63,16 +63,14 @@
 			<xsl:copy-of select="$namespaces"/>
 			<!-- xsl:copy-of select="@*" is the standard way of copying all attributes. -->
 			<xsl:copy-of select="@*"/>
-			<xsl:for-each select="collection($path)">
-				<!-- xsl:copy-of copies nodes and all their descendants -->
-				<xsl:apply-templates select="document(document-uri(.))/schematron-output/node()" mode="schematron-output"/>
-			</xsl:for-each>
+			<xsl:merge>
+        <xsl:merge-source for-each-item="collection($path)" select="schematron-output/failed-assert">
+            <xsl:merge-key select="@location" order="ascending"/>
+        </xsl:merge-source>
+        <xsl:merge-action>
+            <xsl:sequence select="current-merge-group()"/>
+        </xsl:merge-action>
+      </xsl:merge>
 		</xsl:element>
-	</xsl:template>
-
-	<xsl:template match="node()|@*" mode="schematron-output">
-		 <xsl:copy>
-            <xsl:apply-templates select="node()|@*" mode="schematron-output"/>
-        </xsl:copy>
 	</xsl:template>
 </xsl:stylesheet>
