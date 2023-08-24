@@ -65,7 +65,7 @@
 			<xsl:copy-of select="@*"/>
 			<xsl:merge>
         <xsl:merge-source for-each-item="collection($path)" select="schematron-output/failed-assert">
-            <xsl:merge-key select="@location" order="ascending"/>
+            <xsl:merge-key select="failed-assert/@location" order="ascending"/>
         </xsl:merge-source>
         <xsl:merge-action>
             <xsl:sequence select="current-merge-group()"/>
