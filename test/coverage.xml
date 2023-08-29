@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  This file is part of the DITA validator project.
+  See the accompanying LICENSE file for applicable licenses.
+-->
+<package name="com.here.validate.svrl">
+	<lines>
+		 <!-- Fatal rules will fail validation (cannot be overriden)-->
+		<line id="1">appendices-href-missing</line>
+		<line id="2">chapter-href-missing</line>
+		<line id="3">coderef-href-ref-file-not-found</line>
+		<line id="4">colsep-invalid</line>
+		<line id="5">colspec-colnum-not-unique</line>
+		<line id="6">conref-external-file-not-found</line>
+		<line id="7">conref-external-id-mismatch</line>
+		<line id="8">conref-external-id-not-found</line>
+		<line id="9">conref-external-path-not-found</line>
+		<line id="10">conref-external-path-mismatch</line>
+		<line id="11">conref-internal-id-not-found</line>
+		<line id="12">conref-internal-path-mismatch</line>
+		<line id="13">conref-internal-path-not-found</line>
+		<line id="14">href-file-not-found</line>
+		<line id="15">id-not-unique</line>
+		<line id="16">image-href-ref-file-not-found</line>
+		<line id="17">list-all-li-filtered</line>
+		<line id="18">notices-href-missing</line>
+		<line id="19">rowsep-invalid</line>
+		<line id="20">table-all-rows-filtered</line>
+		<line id="21">tgroup-cols-colspec-mismatch</line>
+		<line id="22">tgroup-cols-entry-mismatch</line>
+		<line id="23">topicref-href-missing</line>
+		<line id="24">xref-external-file-not-found</line>
+		<line id="25">xref-external-id-not-found</line>
+		<line id="26">xref-external-path-not-found</line>
+		<line id="27">xref-internal-id-not-found</line>
+		<line id="28">xref-internal-path-not-found</line>
+		<!-- Error rules will fail validation (can be overriden)-->
+		<line id="29">conref-not-lower-case</line>
+		<line id="30">fig-id-invalid</line>
+		<line id="31">fig-id-missing</line>
+		<line id="32">file-not-lower-case</line>
+		<line id="33">href-not-lower-case</line>
+		<line id="34">id-not-lower-case</line>
+		<line id="35">image-file-type-not-supported</line>
+		<line id="36">section-id-missing</line>
+		<line id="37">section-title-missing</line>
+		<line id="38">table-id-invalid</line>
+		<line id="38">xref-no-format</line>
+		<line id="40">xref-www-format-invalid</line>
+		<line id="41">xref-www-scope-invalid</line>
+		<!-- Warning rules will display a warning on validation (can be overriden)-->
+		<line id="42">blacklisted-word</line>
+		<line id="43">codeblock-outputclass-missing</line>
+		<line id="44">codeblock-scale-missing</line>
+		<line id="45">comment-fixme</line>
+		<line id="46">comment-todo</line>
+		<line id="47">fig-title-missing</line>
+		<line id="48">incorrect-capitalization</line>
+		<line id="49">running-text-fixme</line>
+		<line id="50">running-text-lorem-ipsum</line>
+		<line id="51">running-text-todo</line>
+		<line id="52">topic-file-mismatch</line>
+	</lines>
+</package>
