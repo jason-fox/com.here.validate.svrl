@@ -33,9 +33,8 @@ public class ResultEchoTask extends Task {
    */
   public void setMessage(String message) {
     String escapeCode = Character.toString((char) 27);
-    boolean colorize = "true".equals(getProject().getProperty("cli.color"));
 
-    if (colorize) {
+    if (getUseColor()) {
       message = message.replace("[FATAL", escapeCode + "[31m[FATAL");
       message = message.replace("[ERROR", escapeCode + "[31m[ERROR");
       message = message.replace("[WARN", escapeCode + "[33m[WARN");
@@ -43,6 +42,20 @@ public class ResultEchoTask extends Task {
       message = message.replace("\n", escapeCode + "[0m\n");
     }
     this.message = message;
+  }
+
+  private boolean getUseColor() {
+    final String os = System.getProperty("os.name");
+    if (os != null && os.startsWith("Windows")) {
+      return false;
+    } else if (System.getenv("NO_COLOR") != null) {
+      return false;
+    } else if ("dumb".equals(System.getenv("TERM"))) {
+      return false;
+    } else if (System.console() == null) {
+      return false;
+    }
+    return !"false".equals(getProject().getProperty("cli.color"));
   }
 
   /**
