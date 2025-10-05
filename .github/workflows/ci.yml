@@ -36,7 +36,7 @@ jobs:
         with:
           dita-ot-version: '4.1.1'
           plugin: 'com.here.validate.svrl'
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-results
