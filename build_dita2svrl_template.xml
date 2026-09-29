@@ -260,6 +260,7 @@
       outputproperty="svrl.output"
       resultproperty="svrl.result"
     >
+    	<jvmarg value="-Djdk.xml.totalEntitySizeLimit=0"/>
 			<arg value="-Ddita.dir=${dita.dir}"/>
 			<arg value="-Ddita.plugin.org.dita.base.dir=${dita.plugin.org.dita.base.dir}"/>
 			<arg value="-buildfile"/>
