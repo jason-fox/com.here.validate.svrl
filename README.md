@@ -608,4 +608,4 @@ The Program includes the following additional software components which were obt
 -   Saxon-9.1.0.8.jar - http://saxon.sourceforge.net/ - **Mozilla Public license 1.0**
 -   Saxon-9.1.0.8-dom.jar - http://saxon.sourceforge.net/ - **Mozilla Public license 1.0**
 -   xmltask.jar - http://www.oopsconsultancy.com/software/xmltask/ - **Apache 1.1 license** (within
-    `org.doctales.xmltask` plug-in)
+    `org.jung.xmltask` plug-in)
