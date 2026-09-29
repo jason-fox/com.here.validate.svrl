@@ -261,6 +261,9 @@
       resultproperty="svrl.result"
     >
     	<jvmarg value="-Djdk.xml.totalEntitySizeLimit=0"/>
+    	<jvmarg value="-Djdk.xml.entityExpansionLimit=0"/>
+    	<jvmarg value="-Djdk.xml.maxGeneralEntitySizeLimit=0"/>
+    	<jvmarg value="-Djdk.xml.maxParameterEntitySizeLimit=0"/>
 			<arg value="-Ddita.dir=${dita.dir}"/>
 			<arg value="-Ddita.plugin.org.dita.base.dir=${dita.plugin.org.dita.base.dir}"/>
 			<arg value="-buildfile"/>
