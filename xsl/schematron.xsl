@@ -13,8 +13,14 @@
 >
 
 
-	<xsl:import href="plugin:org.dita.base:xsl/common/dita-utilities.xsl"/>
-	<xsl:import href="plugin:org.dita.base:xsl/common/output-message.xsl"/>
+	<xsl:param name="defaultLanguage" select="'en'"/>
+	<xsl:variable name="variableFiles" select="document('../cfg/common/vars/strings.xml')/langlist/lang"/>
+	<xsl:template name="getVariable">
+		<xsl:param name="id" as="xs:string"/>
+		<xsl:variable name="lang" select="lower-case(string(($defaultLanguage, 'en')[1]))"/>
+		<xsl:variable name="file" select="($variableFiles[lower-case(@xml:lang) = $lang], $variableFiles[lower-case(@xml:lang) = substring-before(concat($lang, '-'), '-')], $variableFiles[@xml:lang = 'en'])[1]/@filename"/>
+		<xsl:value-of select="document($file, $variableFiles[1])/variables/variable[@id = $id]"/>
+	</xsl:template>
 	<!-- These come from the base plug-in -->
 	<xsl:param as="xs:string" name="IGNORE_RULES" select="''"/>
 	<xsl:param as="xs:string" name="OUTPUT_RULE-ID" select="'true'"/>
@@ -85,11 +91,6 @@
 						</xsl:attribute>
 						<xsl:call-template name="getVariable">
 							<xsl:with-param name="id" select="'schematron-line-numbers'"/>
-							<xsl:with-param name="params">
-								<number>
-									<xsl:value-of select="saxon:line-number()"/>
-								</number>
-							</xsl:with-param>
 						</xsl:call-template>
 							<xsl:text> </xsl:text>
 						<xsl:value-of select="saxon:line-number()"/>
@@ -132,11 +133,6 @@
 							<xsl:attribute name="diagnostic"><xsl:value-of select="$rule-id"/></xsl:attribute>
 							<xsl:call-template name="getVariable">
 								<xsl:with-param name="id" select="'schematron-line-numbers'"/>
-								<xsl:with-param name="params">
-									<number>
-										<xsl:value-of select="saxon:line-number()"/>
-									</number>
-								</xsl:with-param>
 							</xsl:call-template>
 							<xsl:text> </xsl:text>
 							<xsl:value-of select="saxon:line-number()"/>
@@ -182,11 +178,6 @@
 							</xsl:attribute>
 							<xsl:call-template name="getVariable">
 								<xsl:with-param name="id" select="'schematron-line-numbers'"/>
-								<xsl:with-param name="params">
-									<number>
-										<xsl:value-of select="saxon:line-number()"/>
-									</number>
-								</xsl:with-param>
 							</xsl:call-template>
 							<xsl:text> </xsl:text>
 							<xsl:value-of select="saxon:line-number()"/>
