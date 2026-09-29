@@ -14,12 +14,14 @@
 
 
 	<xsl:param name="defaultLanguage" select="'en'"/>
-	<xsl:variable name="variableFiles" select="document('../cfg/common/vars/strings.xml')/langlist/lang"/>
+	<xsl:variable name="variableFiles" select="document('plugin:org.dita.base:xsl/common/strings.xml')/langlist/lang"/>
 	<xsl:template name="getVariable">
 		<xsl:param name="id" as="xs:string"/>
 		<xsl:variable name="lang" select="lower-case(string(($defaultLanguage, 'en')[1]))"/>
-		<xsl:variable name="file" select="($variableFiles[lower-case(@xml:lang) = $lang], $variableFiles[lower-case(@xml:lang) = substring-before(concat($lang, '-'), '-')], $variableFiles[@xml:lang = 'en'])[1]/@filename"/>
-		<xsl:value-of select="document($file, $variableFiles[1])/variables/variable[@id = $id]"/>
+		<xsl:variable name="exact" select="$variableFiles[lower-case(@xml:lang) = $lang]"/>
+		<xsl:variable name="primary" select="$variableFiles[lower-case(@xml:lang) = substring-before(concat($lang, '-'), '-')]"/>
+		<xsl:variable name="files" select="if (exists($exact)) then $exact else if (exists($primary)) then $primary else $variableFiles[@xml:lang = 'en']"/>
+		<xsl:value-of select="(for $f in $files return document($f/@filename, $f)/*/*[@id = $id])[last()]"/>
 	</xsl:template>
 	<!-- These come from the base plug-in -->
 	<xsl:param as="xs:string" name="IGNORE_RULES" select="''"/>
