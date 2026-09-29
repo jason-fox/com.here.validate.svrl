@@ -4,7 +4,6 @@
 [![DITA-OT 4.2](https://img.shields.io/badge/DITA--OT-4.2-green.svg)](http://www.dita-ot.org/4.2)
 [![Build Status](https://api.travis-ci.com/jason-fox/com.here.validate.svrl.svg?branch=master)](https://travis-ci.com/github/jason-fox/com.here.validate.svrl)
 [![Coverage Status](https://coveralls.io/repos/github/jason-fox/com.here.validate.svrl/badge.svg?branch=master)](https://coveralls.io/github/jason-fox/com.here.validate.svrl?branch=master)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.here.validate.svrl&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.here.validate.svrl)
 
 The DITA Validator [DITA-OT Plug-in](https://www.dita-ot.org/plugins) is a structure, style and content checker for DITA
 documents. The plug-in returns information about the compliance of the document against a **modifiable** series of
@@ -600,7 +599,7 @@ PRs accepted.
 
 ## License
 
-[Apache 2.0](LICENSE) © 2018 - 2024 HERE Europe B.V.
+[Apache 2.0](LICENSE) © 2018 - 2026 HERE Europe B.V.
 
 See the [LICENSE](LICENSE) file in the root of this project for license details.
 
