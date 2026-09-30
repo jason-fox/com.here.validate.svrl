@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-  <failed-assert location="/topic/body[1]/section[2]/fig[1]" role="error">
-    <diagnostic-reference diagnostic="fig-id-invalid">Line 20: fig[id="bad"] - [fig-id-invalid] 
-ID values must start with 'fig-' in all &lt;fig&gt; elements.</diagnostic-reference>
-  </failed-assert>
-</svrl:schematron-output>
-

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
-  <failed-assert location="/topic/body[1]/section[2]/p[2]" role="fatal">
-    <diagnostic-reference diagnostic="id-not-unique">Line 24: p[id="not-unique"] - [id-not-unique] 
-Found a duplicate ID key/value pair with value 'not-unique', ID values must be unique within a file. Change the ID value.</diagnostic-reference>
-  </failed-assert>
-</svrl:schematron-output>
-
