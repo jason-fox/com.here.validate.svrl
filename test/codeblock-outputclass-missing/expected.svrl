@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="/topic/body[1]/section[2]/codeblock[1]" role="warning">
+    <diagnostic-reference diagnostic="codeblock-outputclass-missing">Line 18: codeblock - [codeblock-outputclass-missing] 
+Always provide an outputclass attribute in &lt;codeblock&gt; elements (for example, add outputclass="language-javascript").</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+

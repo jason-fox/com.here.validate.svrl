@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="/topic/body[1]/section[2]/sl[1]" role="error">
+    <diagnostic-reference diagnostic="id-not-lower-case">Line 21: sl[id="bAd"] - [id-not-lower-case] 
+The ID value in id="bAd" is invalid, allowed characters are: lowercase, a-z only, words separated by hyphens.</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+

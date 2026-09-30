@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="" role="error">
+    <diagnostic-reference diagnostic="header-depth-invalid">Line 4: h3 - [header-depth-invalid]
+Header depth invalid - expected 2 but was 3</diagnostic-reference>
+  </failed-assert>
+  <failed-assert location="" role="error">
+    <diagnostic-reference diagnostic="header-depth-invalid">Line 4: h3 - [header-depth-invalid]
+Header depth invalid - expected 2 but was 3</diagnostic-reference>
+  </failed-assert>
+  <failed-assert location="" role="error">
+    <diagnostic-reference diagnostic="header-depth-too-deep">Line 8: h3 - [header-depth-too-deep]
+Header depth too deep - level 3 is not allowed in MDITA</diagnostic-reference>
+  </failed-assert>
+  <failed-assert location="" role="warning">
+    <diagnostic-reference diagnostic="text-before-header">Line 1: p - [text-before-header]
+Text was found before the first header</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+

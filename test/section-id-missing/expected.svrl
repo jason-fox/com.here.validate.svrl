@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl">
+  <failed-assert location="/topic/body[1]/section[2]" role="error">
+    <diagnostic-reference diagnostic="section-id-missing">Line 16: section - [section-id-missing] 
+Always provide an ID attribute in &lt;section&gt; elements.</diagnostic-reference>
+  </failed-assert>
+</svrl:schematron-output>
+
